@@ -8,6 +8,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,8 +19,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class MainVIewActivity extends Activity implements
+
+//TODO: Update the ADT plugin
+public class MainViewActivity extends Activity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks {
+	
+	private static final String TAG = "FIVEXLESS";
 
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the
@@ -55,6 +60,7 @@ public class MainVIewActivity extends Activity implements
 				.beginTransaction()
 				.replace(R.id.container,
 						PlaceholderFragment.newInstance(position + 1)).commit();
+		Log.d(TAG, "ONnAVIGATIONDRAWERITEMSELECTED");
 	}
 
 	public void onSectionAttached(int number) {
@@ -75,6 +81,8 @@ public class MainVIewActivity extends Activity implements
 			mTitle = getString(R.string.title_section_feedback);
 			break;
 		}
+		
+		Log.d(TAG, "onSectionAttached " + (String)mTitle);
 	}
 
 	public void restoreActionBar() {
@@ -92,6 +100,7 @@ public class MainVIewActivity extends Activity implements
 			// decide what to show in the action bar.
 			getMenuInflater().inflate(R.menu.main_view, menu);
 			restoreActionBar();
+			Log.d(TAG, "onCreateOptionsMenu");
 			return true;
 		}
 		return super.onCreateOptionsMenu(menu);
@@ -102,6 +111,7 @@ public class MainVIewActivity extends Activity implements
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
+		Log.d(TAG, "on options item selected shit");
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
@@ -127,10 +137,12 @@ public class MainVIewActivity extends Activity implements
 			Bundle args = new Bundle();
 			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
 			fragment.setArguments(args);
+			Log.d(TAG, "newInstance " + sectionNumber);
 			return fragment;
 		}
 
 		public PlaceholderFragment() {
+			Log.d(TAG, "PlaceHolder Fragment");
 		}
 
 		@Override
@@ -138,14 +150,16 @@ public class MainVIewActivity extends Activity implements
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_main_view,
 					container, false);
+			Log.d(TAG, "onCreateView");
 			return rootView;
 		}
 
 		@Override
 		public void onAttach(Activity activity) {
 			super.onAttach(activity);
-			((MainVIewActivity) activity).onSectionAttached(getArguments()
+			((MainViewActivity) activity).onSectionAttached(getArguments()
 					.getInt(ARG_SECTION_NUMBER));
+			Log.d(TAG, "onAttach");
 		}
 	}
 
