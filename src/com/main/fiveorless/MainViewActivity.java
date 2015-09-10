@@ -3,6 +3,7 @@ package com.main.fiveorless;
 
 import com.fragments.FavoritesFragment;
 import com.fragments.BusinessListFragment;
+import com.fragments.ShowAdvertiserFragment;
 
 import android.app.Activity;
 
@@ -77,8 +78,10 @@ public class MainViewActivity extends Activity implements
 			mTitle = getString(R.string.title_section_feedback);
 			break;
 		}
-		
-		Log.d(TAG, "onSectionAttached " + (String)mTitle);
+	}
+	
+	public void ManualOnSectionAttached(String name){
+		mTitle = name;
 	}
 
 	public void restoreActionBar() {
@@ -129,6 +132,14 @@ public class MainViewActivity extends Activity implements
 			break;
 		case 3:
 			fragment = new FavoritesFragment();
+			break;
+		case 4:
+			/*
+			 * TODO:
+			 * This is a test, it should be removed from 
+			 * the code when the lists are somewhat ready.
+			 */
+			fragment = new ShowAdvertiserFragment();
 			break;
 		
 		}

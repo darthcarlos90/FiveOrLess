@@ -27,6 +27,7 @@ public abstract class ContractClass {
 		public static final String IMAGE_ID = "ImageId";
 		public static final String ADVERTISER_ID = Advertisers.ADVERTISER_ID;
 		public static final String IMAGE_LOCATION = "ImageLocation";
+		public static final String IS_MAIN_PICTURE = "IsMainPicture";
 	}
 
 }

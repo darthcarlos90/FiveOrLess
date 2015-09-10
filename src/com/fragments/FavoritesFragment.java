@@ -2,14 +2,13 @@ package com.fragments;
 
 import com.main.fiveorless.R;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class FavoritesFragment extends Fragment {
+public class FavoritesFragment extends ParentFragmentClass {
 
 	public FavoritesFragment(){} // Empty constructor
 
