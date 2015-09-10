@@ -1,34 +1,26 @@
 package com.main.fiveorless;
 
 
-import com.fragments.OtherFragmentTest;
+import com.fragments.FavoritesFragment;
+import com.fragments.BusinessListFragment;
 
 import android.app.Activity;
 
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.webkit.WebView.FindListener;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 
-//TODO: Update the ADT plugin
 public class MainViewActivity extends Activity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks {
 	
 	private static final String TAG = "FIVEXLESS";
+	private static final String ARG_SECTION_NUMBER = "section_number";
 
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the
@@ -122,72 +114,27 @@ public class MainViewActivity extends Activity implements
 	}
 	
 	private Fragment createFragment (int sectionNumber){
-		if(sectionNumber == 1){
-			PlaceholderFragment fragment = new PlaceholderFragment();
-			Bundle args = new Bundle();
-			args.putInt(fragment.ARG_SECTION_NUMBER, sectionNumber);
-			fragment.setArguments(args);
-			return fragment;
-		} else {
-			OtherFragmentTest otherFragment = new OtherFragmentTest();
-			Bundle args = new Bundle();
-			args.putInt(otherFragment.ARG_SECTION_NUMBER, sectionNumber);
-			otherFragment.setArguments(args);
-			return otherFragment;
-		}
-	}
-
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */
-		public final String ARG_SECTION_NUMBER = "section_number";
-		private static int section_number = -1;
+		Fragment fragment = null;
+		Bundle args = new Bundle();
 		
-		/**
-		 * Constructor
-		 */
-		public PlaceholderFragment() {
-			/*
-			 * Empty constructor required for fragment sub classes
-			 */
+		switch (sectionNumber){
+		case 1:
+			fragment = new BusinessListFragment();
+			args.putBoolean("everything", true);
+			break;
+		case 2:
+			fragment = new BusinessListFragment();
+			args.putBoolean("everything", false);
+			break;
+		case 3:
+			fragment = new FavoritesFragment();
+			break;
 		}
-
-//		/**
-//		 * Returns a new instance of this fragment for the given section number.
-//		 */
-//		public static PlaceholderFragment newInstance(int sectionNumber) {
-//			PlaceholderFragment fragment = new PlaceholderFragment();
-//			Bundle args = new Bundle();
-//			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-//			section_number = sectionNumber;
-//			fragment.setArguments(args);
-//			return fragment;
-//		}
-
 		
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			
-			View rootView = inflater.inflate(R.layout.fragment_main_view,
-					container, false);
-			TextView tv = (TextView) rootView.findViewById(R.id.section_label);
-			tv.setText("" + section_number);
-			return rootView;
-		}
-
-		@Override
-		public void onAttach(Activity activity) {
-			super.onAttach(activity);
-			((MainViewActivity) activity).onSectionAttached(getArguments()
-					.getInt(ARG_SECTION_NUMBER));
-		}
+		
+		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+		fragment.setArguments(args);
+		return fragment;
 	}
 
 }
