@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import android.support.v4.widget.DrawerLayout;
 
 
@@ -129,12 +130,14 @@ public class MainViewActivity extends Activity implements
 		case 3:
 			fragment = new FavoritesFragment();
 			break;
-		}
 		
+		}
 		
 		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
 		fragment.setArguments(args);
+		
 		return fragment;
+		
 	}
 
 }

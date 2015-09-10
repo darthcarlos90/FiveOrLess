@@ -43,7 +43,7 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_main_view=0x7f030000;
-        public static final int fragment_main_view=0x7f030001;
+        public static final int fragment_lists_view=0x7f030001;
         public static final int fragment_navigation_drawer=0x7f030002;
         public static final int test_xml=0x7f030003;
     }

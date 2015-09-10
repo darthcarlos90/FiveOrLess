@@ -23,7 +23,7 @@ public class BusinessListFragment extends ParentFragmentClass {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_main_view,
+		View rootView = inflater.inflate(R.layout.fragment_lists_view,
 				container, false);
 		TextView mainText = (TextView) rootView.findViewById(R.id.section_label);
 		boolean everything = getArguments().getBoolean(ARG_EVERYTHING);
