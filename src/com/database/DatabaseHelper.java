@@ -9,8 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.database.ContractClass;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-	
-	//If anything is changed on the database schema, this number must be changed
+
+	// If anything is changed on the database schema, this number must be
+	// changed
 	public static final int DATABASE_VERSION = 1;
 	public static final String DATABASE_NAME = "FiveOrLessDb.db";
 
@@ -27,8 +28,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		/*
-		 * When the data of the table is upgraded, something must be done. In this
-		 * case, the data will only be just deleted and the database will be created again.
+		 * When the data of the table is upgraded, something must be done. In
+		 * this case, the data will only be just deleted and the database will
+		 * be created again.
 		 */
 		RunDeletes(db);
 		onCreate(db);
@@ -39,19 +41,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 		super.onOpen(db);
 	}
-	
-	private void RunCreates(SQLiteDatabase db){
+
+	private void RunCreates(SQLiteDatabase db) {
 		db.execSQL(ContractClass.SQL_CREATE_ADVERTISERS);
 		db.execSQL(ContractClass.SQL_CREATE_DISCOUNTS);
 		db.execSQL(ContractClass.SQL_CREATE_IMAGE);
 	}
-	
-	private void RunDeletes (SQLiteDatabase db){
+
+	private void RunDeletes(SQLiteDatabase db) {
 		db.execSQL(ContractClass.SQL_DELETE_ADVERTISERS);
 		db.execSQL(ContractClass.SQL_DELETE_DISCOUNTS);
 		db.execSQL(ContractClass.SQL_DELETE_IMAGE);
 	}
-	
-	
 
 }

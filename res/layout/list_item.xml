@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/icon_restaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/main_image_desc" >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/price_list_element"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/icon_restaurant"
+        android:layout_centerHorizontal="true" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/restaurant_name_list_element"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/price_list_element"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/restaurant_address_list_element"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/restaurant_name_list_element"
+        android:layout_centerHorizontal="true" />
+
+    <ToggleButton
+        android:id="@+id/is_favorite_toggle"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/restaurant_address_list_element"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

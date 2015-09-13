@@ -21,10 +21,12 @@ public abstract class ContractClass {
 		public static final String TABLE_NAME = "Advertisers";
 		public static final String ADVERTISER_ID = "AdvertiserId";
 		public static final String ADVERTISER_NAME = "AdvertiserName";
+		public static final String ADVERTISER_ADDRESS = "AdvertiserAddress";
 		public static final String ADVERTISER_X_LOCATION = "AdvertiserLocationX";
 		public static final String ADVERTISER_Y_LOCATION = "AdvertiserLOcationY";
 		public static final String ADVERTISER_INFO = "AdvertiserInfo";
 		public static final String IS_FAVORITE = "IsFavorite";
+		public static final String ADVERTISER_SHORT_NAME = "AdvertiserShortName";
 	}
 	
 	public static abstract class Discounts implements BaseColumns{
@@ -61,10 +63,12 @@ public abstract class ContractClass {
 			CREATE_TABLE + Advertisers.TABLE_NAME + OPEN_PARENTHESIS +
 			Advertisers.ADVERTISER_ID + INTEGER_TYPE + PRIMARY_KEY + COMMA_SEP + 
 			Advertisers.ADVERTISER_NAME + TEXT_TYPE + COMMA_SEP +
+			Advertisers.ADVERTISER_ADDRESS + TEXT_TYPE + COMMA_SEP +
 			Advertisers.ADVERTISER_X_LOCATION + REAL_TYPE + COMMA_SEP +
 			Advertisers.ADVERTISER_Y_LOCATION + REAL_TYPE + COMMA_SEP +
 			Advertisers.ADVERTISER_INFO + TEXT_TYPE + COMMA_SEP +
-			Advertisers.IS_FAVORITE + INTEGER_TYPE + CLOSE_PARENTHESIS;
+			Advertisers.IS_FAVORITE + INTEGER_TYPE + COMMA_SEP+ 
+			Advertisers.ADVERTISER_SHORT_NAME + TEXT_TYPE + CLOSE_PARENTHESIS;
 	
 	public static final String SQL_DELETE_ADVERTISERS = 
 			DROP_STATEMENT + Advertisers.TABLE_NAME;
