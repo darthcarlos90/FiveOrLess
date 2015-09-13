@@ -57,7 +57,7 @@ public abstract class ContractClass {
 	private static final String FOREIGN_HEY_2 = ") REFERENCES ";
 	
 	// Now the actual SQL statements
-	private static final String SQL_CREATE_ADVERTISERS = 
+	public static final String SQL_CREATE_ADVERTISERS = 
 			CREATE_TABLE + Advertisers.TABLE_NAME + OPEN_PARENTHESIS +
 			Advertisers.ADVERTISER_ID + INTEGER_TYPE + PRIMARY_KEY + COMMA_SEP + 
 			Advertisers.ADVERTISER_NAME + TEXT_TYPE + COMMA_SEP +
@@ -66,10 +66,10 @@ public abstract class ContractClass {
 			Advertisers.ADVERTISER_INFO + TEXT_TYPE + COMMA_SEP +
 			Advertisers.IS_FAVORITE + INTEGER_TYPE + CLOSE_PARENTHESIS;
 	
-	private static final String SQL_DELETE_ADVERTISERS = 
+	public static final String SQL_DELETE_ADVERTISERS = 
 			DROP_STATEMENT + Advertisers.TABLE_NAME;
 	
-	private static final String SQL_CREATE_DISCOUNTS = 
+	public static final String SQL_CREATE_DISCOUNTS = 
 			CREATE_TABLE + Discounts.TABLE_NAME + OPEN_PARENTHESIS +
 			Discounts.DISCOUNT_ID + INTEGER_TYPE + PRIMARY_KEY + COMMA_SEP +
 			Discounts.DISCOUNT_INFO + TEXT_TYPE + COMMA_SEP +
@@ -78,10 +78,10 @@ public abstract class ContractClass {
 			Advertisers.TABLE_NAME + OPEN_PARENTHESIS + Advertisers.ADVERTISER_ID +
 			CLOSE_PARENTHESIS + CLOSE_PARENTHESIS;
 	
-	private static final String SQL_DELETE_DISCOUNTS = 
+	public static final String SQL_DELETE_DISCOUNTS = 
 			DROP_STATEMENT + Discounts.TABLE_NAME;
 	
-	private static final String SQL_CREATE_IMAGE = 
+	public static final String SQL_CREATE_IMAGE = 
 			CREATE_TABLE + ImagesManagement.TABLE_NAME + OPEN_PARENTHESIS +
 			ImagesManagement.IMAGE_ID + INTEGER_TYPE + PRIMARY_KEY + COMMA_SEP +
 			ImagesManagement.IMAGE_LOCATION + TEXT_TYPE + COMMA_SEP +
@@ -91,6 +91,6 @@ public abstract class ContractClass {
 			Advertisers.TABLE_NAME + OPEN_PARENTHESIS + Advertisers.ADVERTISER_ID +
 			CLOSE_PARENTHESIS + CLOSE_PARENTHESIS;
 	
-	private static final String SQL_DELETE_IMAGE =
+	public static final String SQL_DELETE_IMAGE =
 			DROP_STATEMENT + ImagesManagement.TABLE_NAME;
 }
