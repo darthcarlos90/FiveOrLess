@@ -26,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		RunCreates(db);
+		InsertData(db);
 	}
 
 	@Override
@@ -41,7 +42,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onOpen(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
 		super.onOpen(db);
 	}
 
@@ -60,15 +60,97 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	private void InsertData(SQLiteDatabase db) {
 		// The values of the butterfinger elements
-		ContentValues butterfingerValues = new ContentValues();
-		butterfingerValues.put(Advertisers.ADVERTISER_NAME, "Butterfingers");
-		butterfingerValues.put(Advertisers.ADVERTISER_SHORT_NAME, "Butterfingers");
-		butterfingerValues.put(Advertisers.DAY_TIME, "Lunch");
-		butterfingerValues.put(Advertisers.IS_FAVORITE, 0);
-		db.insert(Advertisers.TABLE_NAME, null, butterfingerValues);
+		insertIntoAdvertisersTable(db, "Butterfingers", "Butterfingers",
+				"Lunch", 0, "BUtterfingers Sandwich Shop");
+
+		// The values of CoffeeShopAndSandwichBar
+		insertIntoAdvertisersTable(db, "CoffeeShopAndSandwichBar",
+				"CoffeShopSandBar", "Lunch", 0, "Coffee Shop And Sandwich Bar");
+
+		// The values of Frankie and Tonies
+		insertIntoAdvertisersTable(db, "FrankieAndTonies", "FT", "Lunch", 0,
+				"Frankie & Tony's");
+
+		// French Oven
+		insertIntoAdvertisersTable(db, "FrenchOven", "FO", "Lunch", 0,
+				"The French Oven");
+
+		// Fez Food
+		insertIntoAdvertisersTable(db, "FrezFood", "FF", "Lunch", 0, "Fez Food");
+
+		// Grainger Pizza
+		insertIntoAdvertisersTable(db, "GraingerPizza", "GPizza", "Lunch", 0,
+				"Grainger Pizza");
+
+		// Great Grub
+		insertIntoAdvertisersTable(db, "GreatGrub", "GreatGrub", "Lunch", 0,
+				"Great Grub");
+
+		// Crepes
+		insertIntoAdvertisersTable(db, "LePetitteCrepe", "LPC", "Snack", 0,
+				"La Petite Creperie");
+
+		// Pumphres
+		insertIntoAdvertisersTable(db, "Pumphres", "PPH", "Lunch", 0,
+				"Pumphres");
+
+		// QuilliamBrothers
+		insertIntoAdvertisersTable(db, "QuilliamBrothers", "QB", "Tea time", 0,
+				"Quilliam Brothers");
+
+		// Red Dumplings
+		insertIntoAdvertisersTable(db, "RedDumpling", "RDumplings", "Lunch", 0,
+				"Red Dumpling");
+
+		// Shijo
+		insertIntoAdvertisersTable(db, "Shijo", "Shijo", "Lunch", 0, "Shijo");
+
+		// Simply Seafood
+		insertIntoAdvertisersTable(db, "SimplySeaFood", "SS", "Lunch", 0,
+				"Simply Seafood");
+
+		// SloppyJoes
+		insertIntoAdvertisersTable(db, "SloppyJoes", "SJ", "Lunch", 0,
+				"Sloppy Joes");
+
+		// The best Sandwich
+		insertIntoAdvertisersTable(db, "TheBestSandwich", "TBS", "Lunch", 0,
+				"The Best Sandwich");
 		
-		
-		
+		// WiFri
+		insertIntoAdvertisersTable(db, "WiFri", "WF", "Lunch", 0, "Wi-Fri");
+
+	}
+
+	/**
+	 * Helper function to add into the database and not have to write ABSOLUTELY
+	 * EVERYTHING again.
+	 * 
+	 * @param db
+	 *            The database where we are inserting stuff.
+	 * @param adv_name
+	 *            The advertiser name.
+	 * @param short_name
+	 *            The short name of the advertiser.
+	 * @param day_time
+	 *            Day time of the advertiser.
+	 * @param isFavorite
+	 *            Is the advertiser on the favorites list?
+	 * @param display_name
+	 *            The display name of the advertiser
+	 */
+	private void insertIntoAdvertisersTable(SQLiteDatabase db, String adv_name,
+			String short_name, String day_time, int isFavorite,
+			String display_name) {
+
+		ContentValues values = new ContentValues();
+		values.put(Advertisers.ADVERTISER_NAME, adv_name);
+		values.put(Advertisers.ADVERTISER_SHORT_NAME, short_name);
+		values.put(Advertisers.DAY_TIME, day_time);
+		values.put(Advertisers.IS_FAVORITE, isFavorite);
+		values.put(Advertisers.DISPLAY_NAME, display_name);
+		db.insert(Advertisers.TABLE_NAME, null, values);
+
 	}
 
 	private void RunDeletes(SQLiteDatabase db) {
