@@ -5,26 +5,20 @@
 
     <ImageView
         android:id="@+id/icon_restaurant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:contentDescription="@string/main_image_desc" >
-    </ImageView>
+        android:contentDescription="@string/main_image_desc"
+        >
 
-    <TextView
-        android:id="@+id/price_list_element"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/icon_restaurant"
-        android:layout_centerHorizontal="true" >
-    </TextView>
+    </ImageView>
 
     <TextView
         android:id="@+id/restaurant_name_list_element"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/price_list_element"
+        android:layout_below="@id/icon_restaurant"
         android:layout_centerHorizontal="true" />
 
     <TextView

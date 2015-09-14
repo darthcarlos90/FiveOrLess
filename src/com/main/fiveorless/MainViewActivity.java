@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 import android.support.v4.widget.DrawerLayout;
 
 

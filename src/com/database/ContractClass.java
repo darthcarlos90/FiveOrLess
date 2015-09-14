@@ -31,6 +31,7 @@ public abstract class ContractClass {
 		public static final String DAY_TIME = "DayTime";
 		public static final String DISPLAY_NAME = "DisplayName";
 		public static final String POSTCODE = "AdvertiserPostcode";
+		
 	}
 
 	public static abstract class Discounts implements BaseColumns {
