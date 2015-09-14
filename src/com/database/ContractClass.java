@@ -30,6 +30,7 @@ public abstract class ContractClass {
 		public static final String ADVERTISER_SHORT_NAME = "AdvertiserShortName";
 		public static final String DAY_TIME = "DayTime";
 		public static final String DISPLAY_NAME = "DisplayName";
+		public static final String POSTCODE = "AdvertiserPostcode";
 	}
 
 	public static abstract class Discounts implements BaseColumns {
@@ -40,13 +41,6 @@ public abstract class ContractClass {
 		public static final String DISCOUNT_INFO = "DiscountInfo";
 	}
 
-	public static abstract class ImagesManagement implements BaseColumns {
-		public static final String TABLE_NAME = "ImagesManagement";
-		public static final String IMAGE_ID = "ImageId";
-		public static final String ADVERTISER_ID = Advertisers.ADVERTISER_ID;
-		public static final String IMAGE_LOCATION = "ImageLocation";
-		public static final String IS_MAIN_PICTURE = "IsMainPicture";
-	}
 
 	// Now here come some helper constants to create the SQL statements
 	private static final String TEXT_TYPE = " TEXT";
@@ -74,7 +68,8 @@ public abstract class ContractClass {
 			+ COMMA_SEP + Advertisers.IS_FAVORITE + INTEGER_TYPE + COMMA_SEP
 			+ Advertisers.ADVERTISER_SHORT_NAME + TEXT_TYPE + COMMA_SEP
 			+ Advertisers.DAY_TIME + TEXT_TYPE + COMMA_SEP
-			+ Advertisers.DISPLAY_NAME + TEXT_TYPE + CLOSE_PARENTHESIS;
+			+ Advertisers.DISPLAY_NAME + TEXT_TYPE + COMMA_SEP
+			+ Advertisers.POSTCODE + TEXT_TYPE + CLOSE_PARENTHESIS;
 
 	public static final String SQL_DELETE_ADVERTISERS = DROP_STATEMENT
 			+ Advertisers.TABLE_NAME;
@@ -90,18 +85,4 @@ public abstract class ContractClass {
 
 	public static final String SQL_DELETE_DISCOUNTS = DROP_STATEMENT
 			+ Discounts.TABLE_NAME;
-
-	public static final String SQL_CREATE_IMAGE = CREATE_TABLE
-			+ ImagesManagement.TABLE_NAME + OPEN_PARENTHESIS
-			+ ImagesManagement.IMAGE_ID + INTEGER_TYPE + PRIMARY_KEY
-			+ AUTO_INCREMENT + COMMA_SEP + ImagesManagement.IMAGE_LOCATION
-			+ TEXT_TYPE + COMMA_SEP + ImagesManagement.IS_MAIN_PICTURE
-			+ INTEGER_TYPE + COMMA_SEP + ImagesManagement.ADVERTISER_ID
-			+ INTEGER_TYPE + COMMA_SEP + FOREIGN_KEY_1
-			+ ImagesManagement.ADVERTISER_ID + FOREIGN_HEY_2
-			+ Advertisers.TABLE_NAME + OPEN_PARENTHESIS
-			+ Advertisers.ADVERTISER_ID + CLOSE_PARENTHESIS + CLOSE_PARENTHESIS;
-
-	public static final String SQL_DELETE_IMAGE = DROP_STATEMENT
-			+ ImagesManagement.TABLE_NAME;
 }

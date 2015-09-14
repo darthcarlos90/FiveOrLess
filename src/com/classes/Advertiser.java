@@ -1,5 +1,7 @@
 package com.classes;
 
+import java.util.List;
+
 public class Advertiser {
 
 
@@ -13,7 +15,8 @@ public class Advertiser {
 	private String short_name;
 	private boolean has_discount;
 	private String discountInfo;
-	private String imageLocation;
+	private String mainImageLocation;
+	private List<String> otherImages;
 	private int daytime;
 
 	public Advertiser(int id, String name, String address, float x, float y,
@@ -28,7 +31,7 @@ public class Advertiser {
 		this.short_name = short_name;
 		has_discount = false;
 		discountInfo = "";
-		this.imageLocation = image_location;
+		this.mainImageLocation = image_location;
 		this.daytime = daytime;
 	}
 
@@ -110,11 +113,11 @@ public class Advertiser {
 	}
 
 	public String getImageLocation() {
-		return imageLocation;
+		return mainImageLocation;
 	}
 
 	public void setImageLocation(String imageLocation) {
-		this.imageLocation = imageLocation;
+		this.mainImageLocation = imageLocation;
 	}
 
 	public int getDaytime() {
@@ -125,6 +128,16 @@ public class Advertiser {
 		this.daytime = daytime;
 	}
 	
+	public void addImage(String image_location){
+		otherImages.add(image_location);
+	}
 	
+	public String getImageAt(int index){
+		return otherImages.get(index);
+	}
+	
+	public List<String> getAllSecondaryImages(){
+		return otherImages;
+	}
 
 }

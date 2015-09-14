@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.database.ContractClass;
 import com.database.ContractClass.Advertisers;
-import com.classes.*;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -48,7 +47,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private void RunCreates(SQLiteDatabase db) {
 		db.execSQL(ContractClass.SQL_CREATE_ADVERTISERS);
 		db.execSQL(ContractClass.SQL_CREATE_DISCOUNTS);
-		db.execSQL(ContractClass.SQL_CREATE_IMAGE);
 	}
 
 	/**
@@ -61,64 +59,80 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private void InsertData(SQLiteDatabase db) {
 		// The values of the butterfinger elements
 		insertIntoAdvertisersTable(db, "Butterfingers", "Butterfingers",
-				"Lunch", 0, "BUtterfingers Sandwich Shop");
+				"Lunch", 0, "BUtterfingers Sandwich Shop", 54.973248f,
+				-1.6191699f, "59 St Andrew's St", "NE1 5SE");
 
 		// The values of CoffeeShopAndSandwichBar
 		insertIntoAdvertisersTable(db, "CoffeeShopAndSandwichBar",
-				"CoffeShopSandBar", "Lunch", 0, "Coffee Shop And Sandwich Bar");
+				"CoffeShopSandBar", "Lunch", 0, "Coffee Shop & Sandwich Bar",
+				54.976217f, -1.618733f, "Leazes Park Road", "NE1 4PF");
 
 		// The values of Frankie and Tonies
 		insertIntoAdvertisersTable(db, "FrankieAndTonies", "FT", "Lunch", 0,
-				"Frankie & Tony's");
+				"Frankie & Tony's", 54.97731f, -1.6120114f, "19 Ridley Pl",
+				"NE1 8JN");
 
 		// French Oven
 		insertIntoAdvertisersTable(db, "FrenchOven", "FO", "Lunch", 0,
-				"The French Oven");
+				"The French Oven Bakery", 54.972886f, -1.6149408f,
+				"Grainger Arcade", "NE1 5QF");
 
 		// Fez Food
-		insertIntoAdvertisersTable(db, "FrezFood", "FF", "Lunch", 0, "Fez Food");
+		insertIntoAdvertisersTable(db, "FrezFood", "FF", "Lunch", 0,
+				"Fez Food", 54.972886f, -1.6149408f, "Grainger Arcade",
+				"NE1 5QF");
 
 		// Grainger Pizza
 		insertIntoAdvertisersTable(db, "GraingerPizza", "GPizza", "Lunch", 0,
-				"Grainger Pizza");
+				"Grainger Pizza", 54.972886f, -1.6149408f, "Grainger Arcade",
+				"NE1 5QF");
 
 		// Great Grub
-		insertIntoAdvertisersTable(db, "GreatGrub", "GreatGrub", "Lunch", 0,
-				"Great Grub");
+		// TODO: No full info
+		// insertIntoAdvertisersTable(db, "GreatGrub", "GreatGrub", "Lunch", 0,
+		// "Great Grub");
 
 		// Crepes
 		insertIntoAdvertisersTable(db, "LePetitteCrepe", "LPC", "Snack", 0,
-				"La Petite Creperie");
+				"La Petite Creperie", 54.972886f, -1.6149408f,
+				"Grainger Arcade", "NE1 5QF");
 
 		// Pumphres
 		insertIntoAdvertisersTable(db, "Pumphres", "PPH", "Lunch", 0,
-				"Pumphres");
+				"Pumphrey's Coffee Center", 54.972886f, -1.6149408f,
+				"Grainger Arcade", "NE1 5QF");
 
 		// QuilliamBrothers
 		insertIntoAdvertisersTable(db, "QuilliamBrothers", "QB", "Tea time", 0,
-				"Quilliam Brothers");
+				"Quilliam Brothers' Teahouse", 54.9793609f, -1.6130656f,
+				"Claremont Buildings1 Eldon Square", "NE1 7RD");
 
 		// Red Dumplings
 		insertIntoAdvertisersTable(db, "RedDumpling", "RDumplings", "Lunch", 0,
-				"Red Dumpling");
+				"Red Dumpling", 54.972886f, -1.6149408f, "Grainger Arcade",
+				"NE1 5QF");
 
 		// Shijo
-		insertIntoAdvertisersTable(db, "Shijo", "Shijo", "Lunch", 0, "Shijo");
+		insertIntoAdvertisersTable(db, "Shijo", "Shijo", "Lunch", 0, "Shijo",
+				54.9774887f, -1.6138939f, "Northumberland St", "NE1 7QD");
 
 		// Simply Seafood
 		insertIntoAdvertisersTable(db, "SimplySeaFood", "SS", "Lunch", 0,
-				"Simply Seafood");
+				"Simply Seafood", 54.972886f, -1.6149408f, "Grainger Arcade",
+				"NE1 5QF");
 
 		// SloppyJoes
 		insertIntoAdvertisersTable(db, "SloppyJoes", "SJ", "Lunch", 0,
-				"Sloppy Joes");
+				"Sloppy Joes", 54.972886f, -1.6149408f, "Grainger Arcade",
+				"NE1 5QF");
 
 		// The best Sandwich
 		insertIntoAdvertisersTable(db, "TheBestSandwich", "TBS", "Lunch", 0,
-				"The Best Sandwich");
-		
+				"The Best Sandwich", 0.0f, 0.0f, " pending", "pending");
+
 		// WiFri
-		insertIntoAdvertisersTable(db, "WiFri", "WF", "Lunch", 0, "Wi-Fri");
+		insertIntoAdvertisersTable(db, "WiFri", "WF", "Lunch", 0, "Wi-Fri",
+				54.972886f, -1.6149408f, "Grainger Arcade", "NE1 5QF");
 
 	}
 
@@ -141,7 +155,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	private void insertIntoAdvertisersTable(SQLiteDatabase db, String adv_name,
 			String short_name, String day_time, int isFavorite,
-			String display_name) {
+			String display_name, float x_pos, float y_pos, String address,
+			String postcode) {
 
 		ContentValues values = new ContentValues();
 		values.put(Advertisers.ADVERTISER_NAME, adv_name);
@@ -149,6 +164,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		values.put(Advertisers.DAY_TIME, day_time);
 		values.put(Advertisers.IS_FAVORITE, isFavorite);
 		values.put(Advertisers.DISPLAY_NAME, display_name);
+		values.put(Advertisers.ADVERTISER_X_LOCATION, x_pos);
+		values.put(Advertisers.ADVERTISER_Y_LOCATION, y_pos);
+		values.put(Advertisers.ADVERTISER_ADDRESS, address);
+		values.put(Advertisers.POSTCODE, postcode);
 		db.insert(Advertisers.TABLE_NAME, null, values);
 
 	}
@@ -156,7 +175,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private void RunDeletes(SQLiteDatabase db) {
 		db.execSQL(ContractClass.SQL_DELETE_ADVERTISERS);
 		db.execSQL(ContractClass.SQL_DELETE_DISCOUNTS);
-		db.execSQL(ContractClass.SQL_DELETE_IMAGE);
 	}
 
 }
