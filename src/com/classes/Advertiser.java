@@ -2,6 +2,10 @@ package com.classes;
 
 public class Advertiser {
 
+	public enum DAY_TIMES {
+		BREAKFAST, MORNING_SNACK, LUNCH, AFTERNOON_SNACK, DINNER
+	}
+
 	private int id;
 	private String name;
 	private String address;
@@ -13,9 +17,10 @@ public class Advertiser {
 	private boolean has_discount;
 	private String discountInfo;
 	private String imageLocation;
+	private int daytime;
 
 	public Advertiser(int id, String name, String address, float x, float y,
-			String info, boolean fav, String short_name, String image_location) {
+			String info, boolean fav, String short_name, String image_location, int daytime) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
@@ -27,9 +32,8 @@ public class Advertiser {
 		has_discount = false;
 		discountInfo = "";
 		this.imageLocation = image_location;
+		this.daytime = daytime;
 	}
-	
-	
 
 	public int getId() {
 		return id;
@@ -94,18 +98,34 @@ public class Advertiser {
 	public void setShort_name(String short_name) {
 		this.short_name = short_name;
 	}
-	
-	public boolean hasDiscount(){
+
+	public boolean hasDiscount() {
 		return has_discount;
 	}
-	
+
 	public String getDiscount() {
 		return discountInfo;
 	}
-	
-	public void setDiscount (String discount){
+
+	public void setDiscount(String discount) {
 		this.discountInfo = discount;
 		has_discount = true;
+	}
+
+	public String getImageLocation() {
+		return imageLocation;
+	}
+
+	public void setImageLocation(String imageLocation) {
+		this.imageLocation = imageLocation;
+	}
+
+	public int getDaytime() {
+		return daytime;
+	}
+
+	public void setDaytime(int daytime) {
+		this.daytime = daytime;
 	}
 	
 	

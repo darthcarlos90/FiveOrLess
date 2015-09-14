@@ -27,6 +27,7 @@ public abstract class ContractClass {
 		public static final String ADVERTISER_INFO = "AdvertiserInfo";
 		public static final String IS_FAVORITE = "IsFavorite";
 		public static final String ADVERTISER_SHORT_NAME = "AdvertiserShortName";
+		public static final String DAY_TIME = "DayTime";
 	}
 	
 	public static abstract class Discounts implements BaseColumns{
@@ -68,7 +69,8 @@ public abstract class ContractClass {
 			Advertisers.ADVERTISER_Y_LOCATION + REAL_TYPE + COMMA_SEP +
 			Advertisers.ADVERTISER_INFO + TEXT_TYPE + COMMA_SEP +
 			Advertisers.IS_FAVORITE + INTEGER_TYPE + COMMA_SEP+ 
-			Advertisers.ADVERTISER_SHORT_NAME + TEXT_TYPE + CLOSE_PARENTHESIS;
+			Advertisers.ADVERTISER_SHORT_NAME + TEXT_TYPE + COMMA_SEP +
+			Advertisers.DAY_TIME + TEXT_TYPE + CLOSE_PARENTHESIS;
 	
 	public static final String SQL_DELETE_ADVERTISERS = 
 			DROP_STATEMENT + Advertisers.TABLE_NAME;

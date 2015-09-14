@@ -48,6 +48,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL(ContractClass.SQL_CREATE_IMAGE);
 	}
 
+	/**
+	 * Once the database has been created, it is time to start adding the
+	 * information manually because prototype.
+	 * 
+	 * @param db
+	 *            The database where are you adding the new data
+	 */
+	private void InsertData(SQLiteDatabase db) {
+		
+	}
+
 	private void RunDeletes(SQLiteDatabase db) {
 		db.execSQL(ContractClass.SQL_DELETE_ADVERTISERS);
 		db.execSQL(ContractClass.SQL_DELETE_DISCOUNTS);
