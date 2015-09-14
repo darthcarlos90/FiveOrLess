@@ -1,5 +1,6 @@
 package com.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -7,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.database.ContractClass;
+import com.database.ContractClass.Advertisers;
+import com.classes.*;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -56,6 +59,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 *            The database where are you adding the new data
 	 */
 	private void InsertData(SQLiteDatabase db) {
+		// The values of the butterfinger elements
+		ContentValues butterfingerValues = new ContentValues();
+		butterfingerValues.put(Advertisers.ADVERTISER_NAME, "Butterfingers");
+		butterfingerValues.put(Advertisers.ADVERTISER_SHORT_NAME, "Butterfingers");
+		butterfingerValues.put(Advertisers.DAY_TIME, "Lunch");
+		butterfingerValues.put(Advertisers.IS_FAVORITE, 0);
+		db.insert(Advertisers.TABLE_NAME, null, butterfingerValues);
+		
+		
 		
 	}
 

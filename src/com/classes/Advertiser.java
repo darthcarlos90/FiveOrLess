@@ -2,9 +2,6 @@ package com.classes;
 
 public class Advertiser {
 
-	public enum DAY_TIMES {
-		BREAKFAST, MORNING_SNACK, LUNCH, AFTERNOON_SNACK, DINNER
-	}
 
 	private int id;
 	private String name;
