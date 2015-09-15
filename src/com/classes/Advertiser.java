@@ -4,10 +4,10 @@ import java.util.List;
 
 public class Advertiser {
 
-
 	private int id;
 	private String name;
 	private String address;
+	private String postcode;
 	private float x_location;
 	private float y_location;
 	private String info;
@@ -19,8 +19,33 @@ public class Advertiser {
 	private List<String> otherImages;
 	private int daytime;
 
+	/**
+	 * The constructor of the advertiser class.
+	 * 
+	 * @param id
+	 *            The id of the advertiser.
+	 * @param name
+	 *            The name of the advertiser
+	 * @param address
+	 *            The address of the advertiser
+	 * @param x
+	 *            The x location of the advertiser
+	 * @param y
+	 *            The y location of the advertiser
+	 * @param info
+	 *            The information of the advertiser
+	 * @param fav
+	 *            If it is favorite or not
+	 * @param short_name
+	 *            The short name of the advertiser
+	 * @param daytime
+	 *            For what kind of meal is this advertiser
+	 * @param postcode
+	 *            The postcode of the advertiser
+	 */
 	public Advertiser(int id, String name, String address, float x, float y,
-			String info, boolean fav, String short_name, String image_location, int daytime) {
+			String info, boolean fav, String short_name, int daytime,
+			String postcode) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
@@ -31,8 +56,9 @@ public class Advertiser {
 		this.short_name = short_name;
 		has_discount = false;
 		discountInfo = "";
-		this.mainImageLocation = image_location;
+		this.mainImageLocation = short_name + "Main.jpg";
 		this.daytime = daytime;
+		this.postcode = postcode;
 	}
 
 	public int getId() {
@@ -127,17 +153,25 @@ public class Advertiser {
 	public void setDaytime(int daytime) {
 		this.daytime = daytime;
 	}
-	
-	public void addImage(String image_location){
+
+	public void addImage(String image_location) {
 		otherImages.add(image_location);
 	}
-	
-	public String getImageAt(int index){
+
+	public String getImageAt(int index) {
 		return otherImages.get(index);
 	}
-	
-	public List<String> getAllSecondaryImages(){
+
+	public List<String> getAllSecondaryImages() {
 		return otherImages;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
 	}
 
 }

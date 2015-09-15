@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.database.ContractClass;
@@ -17,9 +16,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final int DATABASE_VERSION = 1;
 	public static final String DATABASE_NAME = "FiveOrLessDb.db";
 
-	public DatabaseHelper(Context context, String name, CursorFactory factory,
-			int version) {
-		super(context, name, factory, version);
+	public DatabaseHelper(Context context) {
+		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
 	@Override
