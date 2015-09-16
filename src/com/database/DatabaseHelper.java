@@ -55,9 +55,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 *            The database where are you adding the new data
 	 */
 	private void InsertData(SQLiteDatabase db) {
+		// TODO: Change short names into lower case
 		// The values of the butterfinger elements
 		insertIntoAdvertisersTable(db, "Butterfingers", "Butterfingers",
-				"Lunch", 0, "BUtterfingers Sandwich Shop", 54.973248f,
+				"Lunch", 0, "Butterfingers Sandwich Shop", 54.973248f,
 				-1.6191699f, "59 St Andrew's St", "NE1 5SE");
 
 		// The values of CoffeeShopAndSandwichBar

@@ -44,7 +44,7 @@ public class Advertiser {
 	 *            The postcode of the advertiser
 	 */
 	public Advertiser(int id, String name, String address, float x, float y,
-			String info, boolean fav, String short_name, int daytime,
+			String info, int fav, String short_name, int daytime,
 			String postcode) {
 		this.id = id;
 		this.name = name;
@@ -52,7 +52,11 @@ public class Advertiser {
 		this.x_location = x;
 		this.y_location = y;
 		this.info = info;
-		this.is_favorite = fav;
+		if (fav == 0) {
+			this.is_favorite = false;
+		} else
+			this.is_favorite = true;
+
 		this.short_name = short_name;
 		has_discount = false;
 		discountInfo = "";
