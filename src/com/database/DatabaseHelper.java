@@ -55,34 +55,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 *            The database where are you adding the new data
 	 */
 	private void InsertData(SQLiteDatabase db) {
-		// TODO: Change short names into lower case
 		// The values of the butterfinger elements
-		insertIntoAdvertisersTable(db, "Butterfingers", "Butterfingers",
+		insertIntoAdvertisersTable(db, "Butterfingers", "butterfingers",
 				"Lunch", 0, "Butterfingers Sandwich Shop", 54.973248f,
 				-1.6191699f, "59 St Andrew's St", "NE1 5SE");
 
 		// The values of CoffeeShopAndSandwichBar
 		insertIntoAdvertisersTable(db, "CoffeeShopAndSandwichBar",
-				"CoffeShopSandBar", "Lunch", 0, "Coffee Shop & Sandwich Bar",
+				"coffeshopsandbar", "Lunch", 0, "Coffee Shop & Sandwich Bar",
 				54.976217f, -1.618733f, "Leazes Park Road", "NE1 4PF");
 
 		// The values of Frankie and Tonies
-		insertIntoAdvertisersTable(db, "FrankieAndTonies", "FT", "Lunch", 0,
+		insertIntoAdvertisersTable(db, "FrankieAndTonies", "ft", "Lunch", 0,
 				"Frankie & Tony's", 54.97731f, -1.6120114f, "19 Ridley Pl",
 				"NE1 8JN");
 
 		// French Oven
-		insertIntoAdvertisersTable(db, "FrenchOven", "FO", "Lunch", 0,
+		insertIntoAdvertisersTable(db, "FrenchOven", "fo", "Lunch", 0,
 				"The French Oven Bakery", 54.972886f, -1.6149408f,
 				"Grainger Arcade", "NE1 5QF");
 
 		// Fez Food
-		insertIntoAdvertisersTable(db, "FrezFood", "FF", "Lunch", 0,
+		insertIntoAdvertisersTable(db, "FrezFood", "ff", "Lunch", 0,
 				"Fez Food", 54.972886f, -1.6149408f, "Grainger Arcade",
 				"NE1 5QF");
 
 		// Grainger Pizza
-		insertIntoAdvertisersTable(db, "GraingerPizza", "GPizza", "Lunch", 0,
+		insertIntoAdvertisersTable(db, "GraingerPizza", "gpizza", "Lunch", 0,
 				"Grainger Pizza", 54.972886f, -1.6149408f, "Grainger Arcade",
 				"NE1 5QF");
 
@@ -92,45 +91,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		// "Great Grub");
 
 		// Crepes
-		insertIntoAdvertisersTable(db, "LePetitteCrepe", "LPC", "Snack", 0,
+		insertIntoAdvertisersTable(db, "LePetitteCrepe", "lpc", "Snack", 0,
 				"La Petite Creperie", 54.972886f, -1.6149408f,
 				"Grainger Arcade", "NE1 5QF");
 
 		// Pumphres
-		insertIntoAdvertisersTable(db, "Pumphres", "PPH", "Lunch", 0,
+		insertIntoAdvertisersTable(db, "Pumphres", "pph", "Lunch", 0,
 				"Pumphrey's Coffee Center", 54.972886f, -1.6149408f,
 				"Grainger Arcade", "NE1 5QF");
 
 		// QuilliamBrothers
-		insertIntoAdvertisersTable(db, "QuilliamBrothers", "QB", "Tea time", 0,
+		insertIntoAdvertisersTable(db, "QuilliamBrothers", "qb", "Tea time", 0,
 				"Quilliam Brothers' Teahouse", 54.9793609f, -1.6130656f,
 				"Claremont Buildings1 Eldon Square", "NE1 7RD");
 
 		// Red Dumplings
-		insertIntoAdvertisersTable(db, "RedDumpling", "RDumplings", "Lunch", 0,
+		insertIntoAdvertisersTable(db, "RedDumpling", "rdumplings", "Lunch", 0,
 				"Red Dumpling", 54.972886f, -1.6149408f, "Grainger Arcade",
 				"NE1 5QF");
 
 		// Shijo
-		insertIntoAdvertisersTable(db, "Shijo", "Shijo", "Lunch", 0, "Shijo",
+		insertIntoAdvertisersTable(db, "Shijo", "shijo", "Lunch", 0, "Shijo",
 				54.9774887f, -1.6138939f, "Northumberland St", "NE1 7QD");
 
 		// Simply Seafood
-		insertIntoAdvertisersTable(db, "SimplySeaFood", "SS", "Lunch", 0,
+		insertIntoAdvertisersTable(db, "SimplySeaFood", "ss", "Lunch", 0,
 				"Simply Seafood", 54.972886f, -1.6149408f, "Grainger Arcade",
 				"NE1 5QF");
 
 		// SloppyJoes
-		insertIntoAdvertisersTable(db, "SloppyJoes", "SJ", "Lunch", 0,
+		insertIntoAdvertisersTable(db, "SloppyJoes", "sj", "Lunch", 0,
 				"Sloppy Joes", 54.972886f, -1.6149408f, "Grainger Arcade",
 				"NE1 5QF");
 
 		// The best Sandwich
-		insertIntoAdvertisersTable(db, "TheBestSandwich", "TBS", "Lunch", 0,
+		insertIntoAdvertisersTable(db, "TheBestSandwich", "tbs", "Lunch", 0,
 				"The Best Sandwich", 0.0f, 0.0f, " pending", "pending");
 
 		// WiFri
-		insertIntoAdvertisersTable(db, "WiFri", "WF", "Lunch", 0, "Wi-Fri",
+		insertIntoAdvertisersTable(db, "WiFri", "wf", "Lunch", 0, "Wi-Fri",
 				54.972886f, -1.6149408f, "Grainger Arcade", "NE1 5QF");
 
 	}
