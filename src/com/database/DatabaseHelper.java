@@ -5,6 +5,7 @@ import android.content.Context;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.database.ContractClass;
 import com.database.ContractClass.Advertisers;
@@ -15,6 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	// changed
 	public static final int DATABASE_VERSION = 1;
 	public static final String DATABASE_NAME = "FiveOrLessDb.db";
+	private static final String TAG = "FIVEXLESS";
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -43,6 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	private void RunCreates(SQLiteDatabase db) {
+		Log.d(TAG,ContractClass.SQL_CREATE_ADVERTISERS);
 		db.execSQL(ContractClass.SQL_CREATE_ADVERTISERS);
 		db.execSQL(ContractClass.SQL_CREATE_DISCOUNTS);
 	}

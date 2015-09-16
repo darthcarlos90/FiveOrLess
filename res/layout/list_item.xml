@@ -9,9 +9,7 @@
         android:layout_height="160dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:contentDescription="@string/main_image_desc"
-        >
-
+        android:contentDescription="@string/main_image_desc" >
     </ImageView>
 
     <TextView
@@ -30,9 +28,11 @@
 
     <ToggleButton
         android:id="@+id/is_favorite_toggle"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/restaurant_address_list_element"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textOff="@string/no_favs"
+        android:textOn="@string/on_favs" />
 
 </RelativeLayout>

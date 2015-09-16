@@ -2,7 +2,11 @@ package com.classes;
 
 import java.util.List;
 
+import android.util.Log;
+
 public class Advertiser {
+
+	private final static String TAG = "FIVEXLESS";
 
 	private int id;
 	private String name;
@@ -60,9 +64,20 @@ public class Advertiser {
 		this.short_name = short_name;
 		has_discount = false;
 		discountInfo = "";
-		this.mainImageLocation = short_name + "Main.jpg";
+		this.mainImageLocation = short_name + "main.jpg";
 		this.daytime = daytime;
 		this.postcode = postcode;
+	}
+
+	/**
+	 * Just a random debug method.
+	 */
+	public void print() {
+		String message = "";
+		message += "Id " + id + "\n";
+		message += "Name " + name + "\n";
+		message += "Address " + address + "\n";
+		Log.d(TAG, message);
 	}
 
 	public int getId() {

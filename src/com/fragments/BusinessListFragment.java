@@ -21,7 +21,7 @@ public class BusinessListFragment extends ParentFragmentClass {
 
 	private final String ARG_EVERYTHING = "everything";
 	private ArrayList<Advertiser> advertisers;
-	private DatabaseHelper myDatabase = new DatabaseHelper(getActivity());
+	private DatabaseHelper myDatabase;
 
 	public BusinessListFragment() {
 		// Empty constructor needed!
@@ -30,6 +30,8 @@ public class BusinessListFragment extends ParentFragmentClass {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		myDatabase = new DatabaseHelper(getActivity());
+		advertisers = new ArrayList<Advertiser>();
 		View rootView = inflater.inflate(R.layout.fragment_lists_view,
 				container, false);
 		TextView mainText = (TextView) rootView
@@ -55,6 +57,7 @@ public class BusinessListFragment extends ParentFragmentClass {
 						c.getString(2), c.getFloat(3), c.getFloat(4),
 						c.getString(5), c.getInt(6), c.getString(7),
 						c.getInt(8), c.getString(9));
+				adv.print();
 				advertisers.add(adv);
 
 			} while (c.moveToNext());
@@ -62,13 +65,13 @@ public class BusinessListFragment extends ParentFragmentClass {
 		} else {
 			mainText.setText("Business around");
 		}
-		
+
 		// Now that we've got the data, lets put it on the List View
 		MyArrayAdapter adapter = new MyArrayAdapter(getActivity(), advertisers);
-		
-		ListView listView = (ListView)rootView.findViewById(R.id.main_list);
+
+		ListView listView = (ListView) rootView.findViewById(R.id.main_list);
 		listView.setAdapter(adapter);
-		
+
 		return rootView;
 	}
 }

@@ -24,7 +24,7 @@ public abstract class ContractClass {
 		public static final String ADVERTISER_NAME = "AdvertiserName";
 		public static final String ADVERTISER_ADDRESS = "AdvertiserAddress";
 		public static final String ADVERTISER_X_LOCATION = "AdvertiserLocationX";
-		public static final String ADVERTISER_Y_LOCATION = "AdvertiserLOcationY";
+		public static final String ADVERTISER_Y_LOCATION = "AdvertiserLocationY";
 		public static final String ADVERTISER_INFO = "AdvertiserInfo";
 		public static final String IS_FAVORITE = "IsFavorite";
 		public static final String ADVERTISER_SHORT_NAME = "AdvertiserShortName";

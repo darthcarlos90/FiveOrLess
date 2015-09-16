@@ -150,6 +150,8 @@ public final class R {
         public static final int main_image_desc=0x7f05000a;
         public static final int navigation_drawer_close=0x7f050007;
         public static final int navigation_drawer_open=0x7f050006;
+        public static final int no_favs=0x7f05000d;
+        public static final int on_favs=0x7f05000c;
         public static final int temp_string=0x7f05000b;
         public static final int title_section_favorites=0x7f050002;
         public static final int title_section_feedback=0x7f050005;

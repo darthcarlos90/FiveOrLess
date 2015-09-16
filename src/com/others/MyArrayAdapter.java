@@ -40,7 +40,7 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 					.findViewById(com.main.fiveorless.R.id.icon_restaurant);
 
 			int drawableName = context.getResources().getIdentifier(
-					adv.getShort_name() + "Main", "drawable",
+					adv.getShort_name() + "main", "drawable",
 					context.getPackageName());
 			icon.setImageResource(drawableName);
 
