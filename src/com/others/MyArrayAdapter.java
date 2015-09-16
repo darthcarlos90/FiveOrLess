@@ -32,34 +32,32 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		if (convertView == null) {
-			// Get the row view from the inflater
-			convertView = inflater.inflate(
-					com.main.fiveorless.R.layout.list_item, parent, false);
-			ImageView icon = (ImageView) convertView
-					.findViewById(com.main.fiveorless.R.id.icon_restaurant);
+		// Get the row view from the inflater
 
-			int drawableName = context.getResources().getIdentifier(
-					adv.getShort_name() + "main", "drawable",
-					context.getPackageName());
-			icon.setImageResource(drawableName);
+		View someView = inflater.inflate(R.layout.list_item, parent, false);
+		ImageView icon = (ImageView) someView
+				.findViewById(R.id.icon_restaurant);
 
-			TextView name = (TextView) convertView
-					.findViewById(R.id.restaurant_name_list_element);
-			name.setText(adv.getName());
+		int drawableName = context.getResources().getIdentifier(
+				adv.getShort_name() + "main", "drawable",
+				context.getPackageName());
+		icon.setImageResource(drawableName);
 
-			TextView address = (TextView) convertView
-					.findViewById(R.id.restaurant_address_list_element);
-			address.setText(adv.getAddress());
+		TextView name = (TextView) someView
+				.findViewById(R.id.restaurant_name_list_element);
+		name.setText(adv.getName());
 
-			ToggleButton favorite = (ToggleButton) convertView
-					.findViewById(R.id.is_favorite_toggle);
-			if (adv.isIs_favorite()) {
-				favorite.toggle();
-			}
+		TextView address = (TextView) someView
+				.findViewById(R.id.restaurant_address_list_element);
+		address.setText(adv.getAddress());
 
+		ToggleButton favorite = (ToggleButton) someView
+				.findViewById(R.id.is_favorite_toggle);
+		if (adv.isIs_favorite()) {
+			favorite.toggle();
 		}
-		return convertView;
+
+		return someView;
 	}
 
 }
