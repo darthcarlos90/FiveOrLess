@@ -34,9 +34,11 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 
 		// Get the row view from the inflater
 		if (convertView == null) {
+			// If it is the first element, inflate it
 			convertView = inflater.inflate(R.layout.list_item, parent, false);
 		}
-
+		
+		// Set the corresponding information
 		ImageView icon = (ImageView) convertView
 				.findViewById(R.id.icon_restaurant);
 
