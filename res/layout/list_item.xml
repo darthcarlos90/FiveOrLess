@@ -30,6 +30,10 @@
         android:layout_alignRight="@id/icon_restaurant"
         android:layout_below="@id/icon_restaurant"
         android:text="@string/temp_string" />
+    
+    <TextView
+        
+        ></TextView>
 
     <TextView
         android:id="@+id/restaurant_name_list_element"
