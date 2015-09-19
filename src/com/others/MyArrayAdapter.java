@@ -33,9 +33,11 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		// Get the row view from the inflater
+		if (convertView == null) {
+			convertView = inflater.inflate(R.layout.list_item, parent, false);
+		}
 
-		View someView = inflater.inflate(R.layout.list_item, parent, false);
-		ImageView icon = (ImageView) someView
+		ImageView icon = (ImageView) convertView
 				.findViewById(R.id.icon_restaurant);
 
 		int drawableName = context.getResources().getIdentifier(
@@ -43,21 +45,21 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 				context.getPackageName());
 		icon.setImageResource(drawableName);
 
-		TextView name = (TextView) someView
+		TextView name = (TextView) convertView
 				.findViewById(R.id.restaurant_name_list_element);
 		name.setText(adv.getName());
 
-		TextView address = (TextView) someView
+		TextView address = (TextView) convertView
 				.findViewById(R.id.restaurant_address_list_element);
 		address.setText(adv.getAddress());
 
-		ToggleButton favorite = (ToggleButton) someView
+		ToggleButton favorite = (ToggleButton) convertView
 				.findViewById(R.id.is_favorite_toggle);
 		if (adv.isIs_favorite()) {
 			favorite.toggle();
 		}
 
-		return someView;
+		return convertView;
 	}
 
 }
