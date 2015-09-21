@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -18,6 +19,7 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 
 	private final Context context;
 	private final ArrayList<Advertiser> advertisersArrayList;
+	private static final String TAG = "FIVEXLESS";
 
 	public MyArrayAdapter(Context context, ArrayList<Advertiser> values) {
 		super(context, -1, values);
@@ -27,11 +29,11 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		Advertiser adv = advertisersArrayList.get(position);
+		final Advertiser adv = advertisersArrayList.get(position);
 		// Step 1 create inflater
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		
+
 		ViewHolder holder;
 
 		// Get the row view from the inflater
@@ -39,14 +41,34 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 			// If it is the first element, inflate it
 			convertView = inflater.inflate(R.layout.list_item, parent, false);
 			holder = new ViewHolder();
-			holder.icon = (ImageView) convertView.findViewById(R.id.icon_restaurant);
-			holder.restaurantName = (TextView) convertView.findViewById(R.id.restaurant_name_list_element);
-			holder.address = (TextView) convertView.findViewById(R.id.restaurant_address_list_element);
-			holder.dishDescription = (TextView) convertView.findViewById(R.id.dish_description_list_element);
-			holder.dishName = (TextView) convertView.findViewById(R.id.dish_name_list_element);
-			holder.dishPrice = (TextView) convertView.findViewById(R.id.dish_price_list_element);
-			holder.favorite = (ToggleButton) convertView.findViewById(R.id.is_favorite_toggle);
-			
+			holder.icon = (ImageView) convertView
+					.findViewById(R.id.icon_restaurant);
+			holder.restaurantName = (TextView) convertView
+					.findViewById(R.id.restaurant_name_list_element);
+			holder.address = (TextView) convertView
+					.findViewById(R.id.restaurant_address_list_element);
+			holder.dishDescription = (TextView) convertView
+					.findViewById(R.id.dish_description_list_element);
+			holder.dishName = (TextView) convertView
+					.findViewById(R.id.dish_name_list_element);
+			holder.dishPrice = (TextView) convertView
+					.findViewById(R.id.dish_price_list_element);
+			holder.favorite = (ToggleButton) convertView
+					.findViewById(R.id.is_favorite_toggle);
+			holder.favorite
+					.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+						@Override
+						public void onCheckedChanged(CompoundButton buttonView,
+								boolean isChecked) {
+							adv.setIs_favorite(isChecked);
+							if (isChecked) {
+								// TODO: Add to database
+							}
+
+						}
+					});
+
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -64,7 +86,6 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 		holder.dishDescription.setText(adv.getMainDish().getDescription());
 		holder.dishName.setText(adv.getMainDish().getName());
 		holder.dishPrice.setText("" + adv.getMainDish().getPrice());
-		
 
 		return convertView;
 	}
