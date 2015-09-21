@@ -115,22 +115,23 @@ public final class R {
         public static final int wfmain=0x7f020054;
     }
     public static final class id {
-        public static final int action_settings=0x7f080010;
+        public static final int action_settings=0x7f080011;
         public static final int advertiser_detailed_info=0x7f080006;
         public static final int advertiser_main_image=0x7f080003;
         public static final int advertiser_name_tv=0x7f080004;
         public static final int advertiser_price_tv=0x7f080005;
         public static final int container=0x7f080001;
+        public static final int dish_description_list_element=0x7f08000c;
         public static final int dish_name_list_element=0x7f08000a;
         public static final int dish_price_list_element=0x7f08000b;
         public static final int drawer_layout=0x7f080000;
-        public static final int holis=0x7f08000f;
+        public static final int holis=0x7f080010;
         public static final int icon_restaurant=0x7f080009;
-        public static final int is_favorite_toggle=0x7f08000e;
+        public static final int is_favorite_toggle=0x7f08000f;
         public static final int main_list=0x7f080008;
         public static final int navigation_drawer=0x7f080002;
-        public static final int restaurant_address_list_element=0x7f08000d;
-        public static final int restaurant_name_list_element=0x7f08000c;
+        public static final int restaurant_address_list_element=0x7f08000e;
+        public static final int restaurant_name_list_element=0x7f08000d;
         public static final int section_label=0x7f080007;
     }
     public static final class layout {

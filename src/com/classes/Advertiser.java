@@ -1,5 +1,6 @@
 package com.classes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.util.Log;
@@ -20,8 +21,9 @@ public class Advertiser {
 	private boolean has_discount;
 	private String discountInfo;
 	private String mainImageLocation;
-	private List<String> otherImages;
+	private ArrayList<String> otherImages;
 	private int daytime;
+	private ArrayList<Dish> dishes; // TODO: Not sure yet if this is a thing ..
 
 	/**
 	 * The constructor of the advertiser class.
@@ -67,6 +69,7 @@ public class Advertiser {
 		this.mainImageLocation = short_name + "main.jpg";
 		this.daytime = daytime;
 		this.postcode = postcode;
+		dishes = new ArrayList<Dish>();
 	}
 
 	/**
@@ -191,6 +194,33 @@ public class Advertiser {
 
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
+	}
+
+	public void addDish(Dish dish) {
+		dishes.add(dish);
+	}
+
+	public Dish getDishAt(int index) {
+		return dishes.get(index);
+	}
+
+	public Dish getMainDish() {
+		// TODO: For now
+		if (dishes.isEmpty()) {
+			return new Dish("Dummy Dish for testing", 5.0f,
+					"Some delicious dish", true);
+
+		} else {
+			int main_index = 0;
+			for (int i = 0; i < dishes.size(); i++) {
+				if (dishes.get(i).isMain()) {
+					main_index = i;
+					break;
+				}
+			}
+
+			return dishes.get(main_index);
+		}
 	}
 
 }

@@ -11,22 +11,17 @@ import android.widget.ToggleButton;
  * 
  */
 public class ViewHolder {
-	
+
 	public ImageView icon;
-	public TextView name;
-	public TextView restaurantDescription;
 	public TextView dishName;
-	public TextView dishDescription;
 	public TextView dishPrice;
+	public TextView dishDescription;
+	public TextView restaurantName;
 	public TextView address;
-	public TextView postcode;
 	public ToggleButton favorite;
-	
-	
+
 	// Empty constructor
 	public ViewHolder() {
 	}
-	
-	
 
 }

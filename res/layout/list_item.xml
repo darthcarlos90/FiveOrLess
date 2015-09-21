@@ -30,16 +30,20 @@
         android:layout_alignRight="@id/icon_restaurant"
         android:layout_below="@id/icon_restaurant"
         android:text="@string/temp_string" />
-    
+
     <TextView
-        
-        ></TextView>
+        android:id="@+id/dish_description_list_element"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dish_price_list_element"
+        android:layout_centerHorizontal="true" >
+    </TextView>
 
     <TextView
         android:id="@+id/restaurant_name_list_element"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/dish_name_list_element"
+        android:layout_below="@id/dish_description_list_element"
         android:layout_centerHorizontal="true" />
 
     <TextView

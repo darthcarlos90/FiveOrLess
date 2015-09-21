@@ -31,35 +31,40 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 		// Step 1 create inflater
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		
+		ViewHolder holder;
 
 		// Get the row view from the inflater
 		if (convertView == null) {
 			// If it is the first element, inflate it
 			convertView = inflater.inflate(R.layout.list_item, parent, false);
+			holder = new ViewHolder();
+			holder.icon = (ImageView) convertView.findViewById(R.id.icon_restaurant);
+			holder.restaurantName = (TextView) convertView.findViewById(R.id.restaurant_name_list_element);
+			holder.address = (TextView) convertView.findViewById(R.id.restaurant_address_list_element);
+			holder.dishDescription = (TextView) convertView.findViewById(R.id.dish_description_list_element);
+			holder.dishName = (TextView) convertView.findViewById(R.id.dish_name_list_element);
+			holder.dishPrice = (TextView) convertView.findViewById(R.id.dish_price_list_element);
+			holder.favorite = (ToggleButton) convertView.findViewById(R.id.is_favorite_toggle);
+			
+			convertView.setTag(holder);
+		} else {
+			holder = (ViewHolder) convertView.getTag();
 		}
-		
-		// Set the corresponding information
-		ImageView icon = (ImageView) convertView
-				.findViewById(R.id.icon_restaurant);
 
 		int drawableName = context.getResources().getIdentifier(
 				adv.getShort_name() + "main", "drawable",
 				context.getPackageName());
-		icon.setImageResource(drawableName);
-
-		TextView name = (TextView) convertView
-				.findViewById(R.id.restaurant_name_list_element);
-		name.setText(adv.getName());
-
-		TextView address = (TextView) convertView
-				.findViewById(R.id.restaurant_address_list_element);
-		address.setText(adv.getAddress());
-
-		ToggleButton favorite = (ToggleButton) convertView
-				.findViewById(R.id.is_favorite_toggle);
+		holder.icon.setImageResource(drawableName);
+		holder.restaurantName.setText(adv.getName());
+		holder.address.setText(adv.getAddress());
 		if (adv.isIs_favorite()) {
-			favorite.toggle();
+			holder.favorite.toggle();
 		}
+		holder.dishDescription.setText(adv.getMainDish().getDescription());
+		holder.dishName.setText(adv.getMainDish().getName());
+		holder.dishPrice.setText("" + adv.getMainDish().getPrice());
+		
 
 		return convertView;
 	}
