@@ -1,6 +1,5 @@
 package com.main.fiveorless;
 
-import com.fragments.FavoritesFragment;
 import com.fragments.BusinessListFragment;
 import com.fragments.ShowAdvertiserFragment;
 import com.google.android.gms.common.ConnectionResult;
@@ -54,7 +53,7 @@ public class MainViewActivity extends Activity implements
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
-		
+
 		buildGoogleApiClient();
 	}
 
@@ -127,6 +126,8 @@ public class MainViewActivity extends Activity implements
 		Fragment fragment = null;
 		Bundle args = new Bundle();
 
+		// TODO: Leave the switch for now, but in the future, a simple if
+		// statement will sufice
 		switch (sectionNumber) {
 		case 1:
 			fragment = new BusinessListFragment();
@@ -137,7 +138,7 @@ public class MainViewActivity extends Activity implements
 			args.putDouble("Longitude", mLocation.getLongitude());
 			break;
 		case 3:
-			fragment = new FavoritesFragment();
+			fragment = new BusinessListFragment();
 			break;
 		case 4:
 			/*

@@ -239,11 +239,12 @@ int id test 0x7f07000d
 int id wrap_content 0x7f070011
 int integer google_play_services_version 0x7f090000
 int layout activity_main_view 0x7f030000
-int layout fragment_advertiser_view 0x7f030001
-int layout fragment_lists_view 0x7f030002
-int layout fragment_navigation_drawer 0x7f030003
-int layout list_item 0x7f030004
-int layout test_xml 0x7f030005
+int layout favorites_list_item 0x7f030001
+int layout fragment_advertiser_view 0x7f030002
+int layout fragment_lists_view 0x7f030003
+int layout fragment_navigation_drawer 0x7f030004
+int layout list_item 0x7f030005
+int layout test_xml 0x7f030006
 int menu global 0x7f0b0000
 int menu main_view 0x7f0b0001
 int raw gtm_analytics 0x7f040000

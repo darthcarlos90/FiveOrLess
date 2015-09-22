@@ -55,9 +55,14 @@ public class BusinessListFragment extends ParentFragmentClass {
 			double longitude = getArguments().getDouble("Longitude");
 			ArrayList<Advertiser> temp = getAll(db); // get all the advertisers
 			// calculate which elements are in a distance radius
-			//TODO: Set the distance to be an option of the app
-			advertisers = SearchManager.businesses(temp, latitude, longitude, 1);
+			// TODO: Set the distance to be an option of the app
+			advertisers = SearchManager
+					.businesses(temp, latitude, longitude, 1);
 
+			break;
+		case 3:
+			// Do a query of all the favorites
+			advertisers = getFavorites(db);
 			break;
 		}
 
@@ -68,6 +73,31 @@ public class BusinessListFragment extends ParentFragmentClass {
 		listView.setAdapter(adapter);
 
 		return rootView;
+	}
+
+	private ArrayList<Advertiser> getFavorites(SQLiteDatabase db) {
+		ArrayList<Advertiser> result = new ArrayList<Advertiser>();
+		String projection[] = { Advertisers.ADVERTISER_ID,
+				Advertisers.DISPLAY_NAME, Advertisers.ADVERTISER_ADDRESS,
+				Advertisers.ADVERTISER_X_LOCATION,
+				Advertisers.ADVERTISER_Y_LOCATION, Advertisers.ADVERTISER_INFO,
+				Advertisers.IS_FAVORITE, Advertisers.ADVERTISER_SHORT_NAME,
+				Advertisers.DAY_TIME, Advertisers.POSTCODE };
+		Cursor c = db.query(Advertisers.TABLE_NAME, projection,
+				Advertisers.IS_FAVORITE + " = 1", null, null, null, null, null);
+		c.moveToFirst();
+		while (c.moveToNext()) {
+			Advertiser adv = new Advertiser(c.getInt(0), c.getString(1),
+					c.getString(2), c.getFloat(3), c.getFloat(4),
+					c.getString(5), c.getInt(6), c.getString(7), c.getInt(8),
+					c.getString(9));
+			// adv.print();
+			result.add(adv);
+
+		}
+
+		return result;
+
 	}
 
 	private ArrayList<Advertiser> getAll(SQLiteDatabase db) {
