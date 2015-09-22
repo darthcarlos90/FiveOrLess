@@ -3,6 +3,7 @@ package com.fragments;
 import java.util.ArrayList;
 
 import com.classes.Advertiser;
+import com.classes.SearchManager;
 import com.main.fiveorless.R;
 import com.others.MyArrayAdapter;
 import com.database.*;
@@ -15,11 +16,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class BusinessListFragment extends ParentFragmentClass {
 
-	private final String ARG_EVERYTHING = "everything";
+	private final String ARG_EVERYTHING = "section_number";
 	private ArrayList<Advertiser> advertisers;
 	private DatabaseHelper myDatabase;
 
@@ -34,36 +34,31 @@ public class BusinessListFragment extends ParentFragmentClass {
 		advertisers = new ArrayList<Advertiser>();
 		View rootView = inflater.inflate(R.layout.fragment_lists_view,
 				container, false);
-		TextView mainText = (TextView) rootView
-				.findViewById(R.id.section_label);
-		boolean everything = getArguments().getBoolean(ARG_EVERYTHING);
+		int type = getArguments().getInt(ARG_EVERYTHING);
 		SQLiteDatabase db = myDatabase.getReadableDatabase();
 
-		if (everything) {
-			// Get all the advertisers from the data base
-			String projection[] = { Advertisers.ADVERTISER_ID,
-					Advertisers.DISPLAY_NAME, Advertisers.ADVERTISER_ADDRESS,
-					Advertisers.ADVERTISER_X_LOCATION,
-					Advertisers.ADVERTISER_Y_LOCATION,
-					Advertisers.ADVERTISER_INFO, Advertisers.IS_FAVORITE,
-					Advertisers.ADVERTISER_SHORT_NAME, Advertisers.DAY_TIME,
-					Advertisers.POSTCODE };
+		switch (type) {
+		case 1:
+			if (advertisers.size() > 0) {
+				advertisers.clear();
+			}
+			// Get all the advertisers from the data base and save it on the
+			// advertisers array list
+			advertisers = getAll(db);
+			break;
+		case 2:
+			if (advertisers.size() > 0) {
+				advertisers.clear();
+			}
+			// Show only the elements that are around
+			double latitude = getArguments().getDouble("Latitude");
+			double longitude = getArguments().getDouble("Longitude");
+			ArrayList<Advertiser> temp = getAll(db); // get all the advertisers
+			// calculate which elements are in a distance radius
+			//TODO: Set the distance to be an option of the app
+			advertisers = SearchManager.businesses(temp, latitude, longitude, 1);
 
-			Cursor c = db.query(Advertisers.TABLE_NAME, projection, null, null,
-					null, null, null, null);
-			c.moveToFirst();
-			do {
-				Advertiser adv = new Advertiser(c.getInt(0), c.getString(1),
-						c.getString(2), c.getFloat(3), c.getFloat(4),
-						c.getString(5), c.getInt(6), c.getString(7),
-						c.getInt(8), c.getString(9));
-				//adv.print();
-				advertisers.add(adv);
-
-			} while (c.moveToNext());
-
-		} else {
-			mainText.setText("Business around");
+			break;
 		}
 
 		// Now that we've got the data, lets put it on the List View
@@ -73,5 +68,31 @@ public class BusinessListFragment extends ParentFragmentClass {
 		listView.setAdapter(adapter);
 
 		return rootView;
+	}
+
+	private ArrayList<Advertiser> getAll(SQLiteDatabase db) {
+		ArrayList<Advertiser> result = new ArrayList<Advertiser>();
+		String projection[] = { Advertisers.ADVERTISER_ID,
+				Advertisers.DISPLAY_NAME, Advertisers.ADVERTISER_ADDRESS,
+				Advertisers.ADVERTISER_X_LOCATION,
+				Advertisers.ADVERTISER_Y_LOCATION, Advertisers.ADVERTISER_INFO,
+				Advertisers.IS_FAVORITE, Advertisers.ADVERTISER_SHORT_NAME,
+				Advertisers.DAY_TIME, Advertisers.POSTCODE };
+
+		Cursor c = db.query(Advertisers.TABLE_NAME, projection, null, null,
+				null, null, null, null);
+		c.moveToFirst();
+		do {
+			Advertiser adv = new Advertiser(c.getInt(0), c.getString(1),
+					c.getString(2), c.getFloat(3), c.getFloat(4),
+					c.getString(5), c.getInt(6), c.getString(7), c.getInt(8),
+					c.getString(9));
+			// adv.print();
+			result.add(adv);
+
+		} while (c.moveToNext());
+
+		return result;
+
 	}
 }

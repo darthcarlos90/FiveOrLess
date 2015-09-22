@@ -13,8 +13,8 @@ public class Advertiser {
 	private String name;
 	private String address;
 	private String postcode;
-	private float x_location;
-	private float y_location;
+	private double latitude;
+	private double longitude;
 	private String info;
 	private boolean is_favorite;
 	private String short_name;
@@ -49,14 +49,14 @@ public class Advertiser {
 	 * @param postcode
 	 *            The postcode of the advertiser
 	 */
-	public Advertiser(int id, String name, String address, float x, float y,
+	public Advertiser(int id, String name, String address, double latitude, double longitude,
 			String info, int fav, String short_name, int daytime,
 			String postcode) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
-		this.x_location = x;
-		this.y_location = y;
+		this.latitude = latitude;
+		this.longitude = longitude;
 		this.info = info;
 		if (fav == 0) {
 			this.is_favorite = false;
@@ -107,20 +107,20 @@ public class Advertiser {
 		this.address = address;
 	}
 
-	public float getX_location() {
-		return x_location;
+	public double getLatitude() {
+		return latitude;
 	}
 
-	public void setX_location(float x_location) {
-		this.x_location = x_location;
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
-	public float getY_location() {
-		return y_location;
+	public double getLongitude() {
+		return longitude;
 	}
 
-	public void setY_location(float y_location) {
-		this.y_location = y_location;
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
 	public String getInfo() {
