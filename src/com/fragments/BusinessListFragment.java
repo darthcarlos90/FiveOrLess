@@ -57,7 +57,7 @@ public class BusinessListFragment extends ParentFragmentClass {
 						c.getString(2), c.getFloat(3), c.getFloat(4),
 						c.getString(5), c.getInt(6), c.getString(7),
 						c.getInt(8), c.getString(9));
-				adv.print();
+				//adv.print();
 				advertisers.add(adv);
 
 			} while (c.moveToNext());

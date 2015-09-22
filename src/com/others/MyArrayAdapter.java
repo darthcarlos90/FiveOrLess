@@ -6,30 +6,32 @@ import com.classes.Advertiser;
 import com.main.fiveorless.R;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 
 	private final Context context;
 	private final ArrayList<Advertiser> advertisersArrayList;
 	private static final String TAG = "FIVEXLESS";
+	//private DatabaseHelper myDatabase;
 
 	public MyArrayAdapter(Context context, ArrayList<Advertiser> values) {
 		super(context, -1, values);
 		this.context = context;
 		this.advertisersArrayList = values;
+		//myDatabase = new DatabaseHelper(context);
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final Advertiser adv = advertisersArrayList.get(position);
+		Log.d(TAG, "advertiser id: " + adv.getId());
 		// Step 1 create inflater
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -53,21 +55,6 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 					.findViewById(R.id.dish_name_list_element);
 			holder.dishPrice = (TextView) convertView
 					.findViewById(R.id.dish_price_list_element);
-			holder.favorite = (ToggleButton) convertView
-					.findViewById(R.id.is_favorite_toggle);
-			holder.favorite
-					.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-						@Override
-						public void onCheckedChanged(CompoundButton buttonView,
-								boolean isChecked) {
-							adv.setIs_favorite(isChecked);
-							if (isChecked) {
-								// TODO: Add to database
-							}
-
-						}
-					});
 
 			convertView.setTag(holder);
 		} else {
@@ -80,14 +67,25 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 		holder.icon.setImageResource(drawableName);
 		holder.restaurantName.setText(adv.getName());
 		holder.address.setText(adv.getAddress());
-		if (adv.isIs_favorite()) {
-			holder.favorite.toggle();
-		}
 		holder.dishDescription.setText(adv.getMainDish().getDescription());
 		holder.dishName.setText(adv.getMainDish().getName());
 		holder.dishPrice.setText("" + adv.getMainDish().getPrice());
 
 		return convertView;
 	}
+
+//	private void SetFavorite(String advName, boolean isFavorite) {
+//		int value = 0;
+//		if (isFavorite)
+//			value = 1;
+//		SQLiteDatabase db = myDatabase.getReadableDatabase();
+//
+//		String strSql = "UPDATE " + Advertisers.TABLE_NAME + " SET "
+//				+ Advertisers.IS_FAVORITE + " = " + value + " WHERE "
+//				+ Advertisers.ADVERTISER_NAME + " = '" + advName + "'";
+//		Log.d(TAG, strSql);
+//
+//		db.execSQL(strSql);
+//	}
 
 }
