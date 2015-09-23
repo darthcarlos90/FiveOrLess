@@ -5,6 +5,7 @@ x Look for the algorithm that makes the distance calculation.
 x Once the proper lists are loaded depending on the button on the menu created, add an onclick to the list that takes you to the restaurant main information.
 - Load the information from the restaurant into a fragment, AND, put there a button that changes depending on if this is a favorite or not.
 - Add functionality to that button.
+- Add the open in google maps function to the address section
 - Fix the fragment stack
 - Update the database to acept dish description, and stuff. Perhaps even add a table for dishes?
 - check the list items and see why there is too much space wasted before and after the image

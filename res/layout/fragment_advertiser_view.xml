@@ -6,10 +6,16 @@
     <ImageView 
         android:id="@+id/advertiser_main_image"
         android:layout_centerHorizontal="true"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/main_image_desc"
         />
+    
+    <TextView
+        android:id="@+id/dish_name_tv"
+        android:layout_below="@id/advertiser_main_image"
+        
+        ></TextView>
     
     <TextView
         android:id="@+id/advertiser_name_tv"

@@ -1,7 +1,6 @@
 package com.main.fiveorless;
 
 import com.fragments.BusinessListFragment;
-import com.fragments.ShowAdvertiserFragment;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -123,6 +122,7 @@ public class MainViewActivity extends Activity implements
 	}
 
 	private Fragment createFragment(int sectionNumber) {
+		// TODO: Add functionality to thefragment stack
 		Fragment fragment = null;
 		Bundle args = new Bundle();
 
@@ -139,13 +139,6 @@ public class MainViewActivity extends Activity implements
 			break;
 		case 3:
 			fragment = new BusinessListFragment();
-			break;
-		case 4:
-			/*
-			 * TODO: This is a test, it should be removed from the code when the
-			 * lists are somewhat ready.
-			 */
-			fragment = new ShowAdvertiserFragment();
 			break;
 
 		}
