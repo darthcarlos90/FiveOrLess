@@ -2,8 +2,11 @@ Stuff TODO:
 x Remove the favorites button
 x Add functionality to the main Fragment of which list to load.
 x Look for the algorithm that makes the distance calculation.
-- Once the proper lists are loaded depending on the button on the menu created, add an onclick to the list that takes you to the restaurant main information.
-- Load the information from the restaurant into a fragment, AND, put there an hear image view that changes depending on if this is a favorite or not.
+x Once the proper lists are loaded depending on the button on the menu created, add an onclick to the list that takes you to the restaurant main information.
+- Load the information from the restaurant into a fragment, AND, put there a button that changes depending on if this is a favorite or not.
 - Add functionality to that button.
+- Fix the fragment stack
 - Update the database to acept dish description, and stuff. Perhaps even add a table for dishes?
 - check the list items and see why there is too much space wasted before and after the image
+- Make favorites be about the dishes, no advertisers
+

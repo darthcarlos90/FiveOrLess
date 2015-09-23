@@ -9,12 +9,16 @@ import com.others.MyArrayAdapter;
 import com.database.*;
 import com.database.ContractClass.Advertisers;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class BusinessListFragment extends ParentFragmentClass {
@@ -39,17 +43,11 @@ public class BusinessListFragment extends ParentFragmentClass {
 
 		switch (type) {
 		case 1:
-			if (advertisers.size() > 0) {
-				advertisers.clear();
-			}
 			// Get all the advertisers from the data base and save it on the
 			// advertisers array list
 			advertisers = getAll(db);
 			break;
 		case 2:
-			if (advertisers.size() > 0) {
-				advertisers.clear();
-			}
 			// Show only the elements that are around
 			double latitude = getArguments().getDouble("Latitude");
 			double longitude = getArguments().getDouble("Longitude");
@@ -58,7 +56,6 @@ public class BusinessListFragment extends ParentFragmentClass {
 			// TODO: Set the distance to be an option of the app
 			advertisers = SearchManager
 					.businesses(temp, latitude, longitude, 1);
-
 			break;
 		case 3:
 			// Do a query of all the favorites
@@ -71,6 +68,20 @@ public class BusinessListFragment extends ParentFragmentClass {
 
 		ListView listView = (ListView) rootView.findViewById(R.id.main_list);
 		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				FragmentManager fragmentManager = getFragmentManager();
+				Fragment fragment = new ShowAdvertiserFragment();
+				Bundle args = new Bundle();
+				args.putInt("toSearch", advertisers.get(position).getId());
+				fragment.setArguments(args);
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, fragment).commit();
+			}
+		});
 
 		return rootView;
 	}
