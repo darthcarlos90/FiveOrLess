@@ -80,7 +80,8 @@ public class BusinessListFragment extends ParentFragmentClass {
 				args.putString("advName", advertisers.get(position).getName());
 				fragment.setArguments(args);
 				fragmentManager.beginTransaction()
-						.replace(R.id.container, fragment).commit();
+						.replace(R.id.container, fragment).addToBackStack(null)
+						.commit();
 			}
 		});
 
