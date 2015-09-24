@@ -23,8 +23,8 @@ public abstract class ContractClass {
 		public static final String ADVERTISER_ID = "AdvertiserId";
 		public static final String ADVERTISER_NAME = "AdvertiserName";
 		public static final String ADVERTISER_ADDRESS = "AdvertiserAddress";
-		public static final String ADVERTISER_X_LOCATION = "AdvertiserLocationX";
-		public static final String ADVERTISER_Y_LOCATION = "AdvertiserLocationY";
+		public static final String ADVERTISER_LONGITUDE = "AdvertiserLongitude";
+		public static final String ADVERTISER_LATITUDE = "AdvertiserLatitude";
 		public static final String ADVERTISER_INFO = "AdvertiserInfo";
 		public static final String IS_FAVORITE = "IsFavorite";
 		public static final String ADVERTISER_SHORT_NAME = "AdvertiserShortName";
@@ -63,8 +63,8 @@ public abstract class ContractClass {
 			+ Advertisers.ADVERTISER_ID + INTEGER_TYPE + PRIMARY_KEY
 			+ AUTO_INCREMENT + COMMA_SEP + Advertisers.ADVERTISER_NAME
 			+ TEXT_TYPE + COMMA_SEP + Advertisers.ADVERTISER_ADDRESS
-			+ TEXT_TYPE + COMMA_SEP + Advertisers.ADVERTISER_X_LOCATION
-			+ REAL_TYPE + COMMA_SEP + Advertisers.ADVERTISER_Y_LOCATION
+			+ TEXT_TYPE + COMMA_SEP + Advertisers.ADVERTISER_LONGITUDE
+			+ REAL_TYPE + COMMA_SEP + Advertisers.ADVERTISER_LATITUDE
 			+ REAL_TYPE + COMMA_SEP + Advertisers.ADVERTISER_INFO + TEXT_TYPE
 			+ COMMA_SEP + Advertisers.IS_FAVORITE + INTEGER_TYPE + COMMA_SEP
 			+ Advertisers.ADVERTISER_SHORT_NAME + TEXT_TYPE + COMMA_SEP

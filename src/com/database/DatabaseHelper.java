@@ -165,8 +165,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		values.put(Advertisers.DAY_TIME, day_time);
 		values.put(Advertisers.IS_FAVORITE, isFavorite);
 		values.put(Advertisers.DISPLAY_NAME, display_name);
-		values.put(Advertisers.ADVERTISER_X_LOCATION, x_pos);
-		values.put(Advertisers.ADVERTISER_Y_LOCATION, y_pos);
+		values.put(Advertisers.ADVERTISER_LONGITUDE, x_pos);
+		values.put(Advertisers.ADVERTISER_LATITUDE, y_pos);
 		values.put(Advertisers.ADVERTISER_ADDRESS, address);
 		values.put(Advertisers.POSTCODE, postcode);
 		db.insert(Advertisers.TABLE_NAME, null, values);

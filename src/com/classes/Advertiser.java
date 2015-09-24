@@ -49,9 +49,9 @@ public class Advertiser {
 	 * @param postcode
 	 *            The postcode of the advertiser
 	 */
-	public Advertiser(int id, String name, String address, double latitude, double longitude,
-			String info, int fav, String short_name, int daytime,
-			String postcode) {
+	public Advertiser(int id, String name, String address, double latitude,
+			double longitude, String info, int fav, String short_name,
+			int daytime, String postcode) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
@@ -69,6 +69,30 @@ public class Advertiser {
 		this.mainImageLocation = short_name + "main.jpg";
 		this.daytime = daytime;
 		this.postcode = postcode;
+		dishes = new ArrayList<Dish>();
+	}
+
+	/**
+	 * Semi empty constructor. Just needs Id, the rest of the variables are set
+	 * to empty.
+	 * 
+	 * @param id
+	 *            The id of the advertiser.
+	 */
+	public Advertiser(int id) {
+		this.id = id;
+		is_favorite = false;
+		has_discount = false;
+		name = "";
+		address = "";
+		latitude = 0.0;
+		longitude = 0.0;
+		info = "";
+		short_name = "";
+		discountInfo = "";
+		mainImageLocation = "";
+		daytime = -1;
+		postcode = "";
 		dishes = new ArrayList<Dish>();
 	}
 

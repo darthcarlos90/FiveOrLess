@@ -77,6 +77,7 @@ public class BusinessListFragment extends ParentFragmentClass {
 				Fragment fragment = new ShowAdvertiserFragment();
 				Bundle args = new Bundle();
 				args.putInt("toSearch", advertisers.get(position).getId());
+				args.putString("advName", advertisers.get(position).getName());
 				fragment.setArguments(args);
 				fragmentManager.beginTransaction()
 						.replace(R.id.container, fragment).commit();
@@ -90,8 +91,8 @@ public class BusinessListFragment extends ParentFragmentClass {
 		ArrayList<Advertiser> result = new ArrayList<Advertiser>();
 		String projection[] = { Advertisers.ADVERTISER_ID,
 				Advertisers.DISPLAY_NAME, Advertisers.ADVERTISER_ADDRESS,
-				Advertisers.ADVERTISER_X_LOCATION,
-				Advertisers.ADVERTISER_Y_LOCATION, Advertisers.ADVERTISER_INFO,
+				Advertisers.ADVERTISER_LONGITUDE,
+				Advertisers.ADVERTISER_LATITUDE, Advertisers.ADVERTISER_INFO,
 				Advertisers.IS_FAVORITE, Advertisers.ADVERTISER_SHORT_NAME,
 				Advertisers.DAY_TIME, Advertisers.POSTCODE };
 		Cursor c = db.query(Advertisers.TABLE_NAME, projection,
@@ -107,6 +108,8 @@ public class BusinessListFragment extends ParentFragmentClass {
 
 		}
 
+		c.close();
+
 		return result;
 
 	}
@@ -115,8 +118,8 @@ public class BusinessListFragment extends ParentFragmentClass {
 		ArrayList<Advertiser> result = new ArrayList<Advertiser>();
 		String projection[] = { Advertisers.ADVERTISER_ID,
 				Advertisers.DISPLAY_NAME, Advertisers.ADVERTISER_ADDRESS,
-				Advertisers.ADVERTISER_X_LOCATION,
-				Advertisers.ADVERTISER_Y_LOCATION, Advertisers.ADVERTISER_INFO,
+				Advertisers.ADVERTISER_LONGITUDE,
+				Advertisers.ADVERTISER_LATITUDE, Advertisers.ADVERTISER_INFO,
 				Advertisers.IS_FAVORITE, Advertisers.ADVERTISER_SHORT_NAME,
 				Advertisers.DAY_TIME, Advertisers.POSTCODE };
 
@@ -132,6 +135,8 @@ public class BusinessListFragment extends ParentFragmentClass {
 			result.add(adv);
 
 		} while (c.moveToNext());
+
+		c.close();
 
 		return result;
 
