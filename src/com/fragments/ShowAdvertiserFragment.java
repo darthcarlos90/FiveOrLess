@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -97,6 +99,16 @@ public class ShowAdvertiserFragment extends Fragment {
 			favorites.toggle();
 		}
 
+		favorites.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				SetFavorite(isChecked);
+
+			}
+		});
+
 	}
 
 	/**
@@ -129,6 +141,19 @@ public class ShowAdvertiserFragment extends Fragment {
 		advertiser.setPostcode(c.getString(9));
 		c.close();
 
+	}
+
+	private void SetFavorite(boolean isFavorite) {
+		int value = 0;
+		if (isFavorite)
+			value = 1;
+		SQLiteDatabase db = myDatabase.getWritableDatabase();
+
+		String strSql = "UPDATE " + Advertisers.TABLE_NAME + " SET "
+				+ Advertisers.IS_FAVORITE + " = " + value + " WHERE "
+				+ Advertisers.ADVERTISER_ID + " = '" + advertiser.getId() + "'";
+
+		db.execSQL(strSql);
 	}
 
 }

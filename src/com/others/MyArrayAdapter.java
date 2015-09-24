@@ -79,18 +79,6 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 		return convertView;
 	}
 
-	// private void SetFavorite(String advName, boolean isFavorite) {
-	// int value = 0;
-	// if (isFavorite)
-	// value = 1;
-	// SQLiteDatabase db = myDatabase.getReadableDatabase();
-	//
-	// String strSql = "UPDATE " + Advertisers.TABLE_NAME + " SET "
-	// + Advertisers.IS_FAVORITE + " = " + value + " WHERE "
-	// + Advertisers.ADVERTISER_NAME + " = '" + advName + "'";
-	// Log.d(TAG, strSql);
-	//
-	// db.execSQL(strSql);
-	// }
+	
 
 }
