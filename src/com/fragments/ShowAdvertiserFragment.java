@@ -1,5 +1,7 @@
 package com.fragments;
 
+import java.util.Locale;
+
 import com.classes.Advertiser;
 import com.database.DatabaseHelper;
 import com.database.ContractClass.Advertisers;
@@ -8,11 +10,15 @@ import com.main.fiveorless.R;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -25,7 +31,8 @@ public class ShowAdvertiserFragment extends Fragment {
 	private final String ARG_NUMBER = "toSearch";
 	private Advertiser advertiser;
 	private DatabaseHelper myDatabase;
-	private Activity activity;
+	private static final String TAG = "FIVEXLESS";
+	private OnClickListener openMaps;
 
 	/**
 	 * Empty constructor
@@ -38,7 +45,21 @@ public class ShowAdvertiserFragment extends Fragment {
 		super.onAttach(activity);
 		((MainViewActivity) activity).ManualOnSectionAttached(getArguments()
 				.getString("advName"));
-		this.activity = activity;
+		openMaps = new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				String uri = String.format(Locale.ENGLISH,
+						"geo:%f,%f?z=17&q=%f,%f", advertiser.getLatitude(),
+						advertiser.getLongitude(), advertiser.getLatitude(),
+						advertiser.getLongitude());
+				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+				getActivity().startActivity(intent);
+				Log.d(TAG, "Latitude: " + advertiser.getLatitude());
+				Log.d(TAG, "Longitude: " + advertiser.getLongitude());
+			}
+		};
+
 	}
 
 	@Override
@@ -84,9 +105,9 @@ public class ShowAdvertiserFragment extends Fragment {
 		ToggleButton favorites = (ToggleButton) rootView
 				.findViewById(R.id.fav_button);
 
-		int drawableId = activity.getResources().getIdentifier(
+		int drawableId = getActivity().getResources().getIdentifier(
 				advertiser.getShort_name() + "main", "drawable",
-				activity.getPackageName());
+				getActivity().getPackageName());
 		icon.setImageResource(drawableId);
 		dishNameTv.setText(advertiser.getMainDish().getName());
 		dishPriceTv.setText("Price: " + advertiser.getMainDish().getPrice());
@@ -109,6 +130,9 @@ public class ShowAdvertiserFragment extends Fragment {
 			}
 		});
 
+		advertiserAddressTv.setOnClickListener(openMaps);
+		advertiserPostcodeTv.setOnClickListener(openMaps);
+
 	}
 
 	/**
@@ -118,8 +142,8 @@ public class ShowAdvertiserFragment extends Fragment {
 		SQLiteDatabase db = myDatabase.getReadableDatabase();
 		String projection[] = { Advertisers.ADVERTISER_ID,
 				Advertisers.DISPLAY_NAME, Advertisers.ADVERTISER_ADDRESS,
-				Advertisers.ADVERTISER_LATITUDE,
-				Advertisers.ADVERTISER_LONGITUDE, Advertisers.ADVERTISER_INFO,
+				Advertisers.ADVERTISER_LONGITUDE,
+				Advertisers.ADVERTISER_LATITUDE, Advertisers.ADVERTISER_INFO,
 				Advertisers.IS_FAVORITE, Advertisers.ADVERTISER_SHORT_NAME,
 				Advertisers.DAY_TIME, Advertisers.POSTCODE };
 		Cursor c = db.query(Advertisers.TABLE_NAME, projection,
