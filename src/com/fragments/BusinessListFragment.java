@@ -98,13 +98,13 @@ public class BusinessListFragment extends ParentFragmentClass {
 				Advertisers.DAY_TIME, Advertisers.POSTCODE };
 		Cursor c = db.query(Advertisers.TABLE_NAME, projection,
 				Advertisers.IS_FAVORITE + " = 1", null, null, null, null, null);
-		c.moveToFirst();
+		//c.moveToFirst();
 		while (c.moveToNext()) {
 			Advertiser adv = new Advertiser(c.getInt(0), c.getString(1),
 					c.getString(2), c.getFloat(3), c.getFloat(4),
 					c.getString(5), c.getInt(6), c.getString(7), c.getInt(8),
 					c.getString(9));
-			// adv.print();
+			
 			result.add(adv);
 
 		}
