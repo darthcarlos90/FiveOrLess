@@ -180,4 +180,12 @@ public class ShowAdvertiserFragment extends Fragment {
 		db.execSQL(strSql);
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		((MainViewActivity) getActivity())
+				.ManualOnSectionAttached(getArguments().getString("advName"));
+
+	}
+
 }

@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -60,8 +61,10 @@ public class MainViewActivity extends Activity implements
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
 		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction()
-				.replace(R.id.container, createFragment(position + 1)).commit();
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		transaction.replace(R.id.container, createFragment(position + 1));
+		transaction.addToBackStack(null);
+		transaction.commit();
 	}
 
 	public void onSectionAttached(int number) {
@@ -83,13 +86,12 @@ public class MainViewActivity extends Activity implements
 			break;
 		}
 		getActionBar().setTitle(mTitle);
-		
+
 	}
 
 	public void ManualOnSectionAttached(String name) {
 		mTitle = name;
-		getActionBar().setTitle(mTitle);
-		
+		getActionBar().setTitle(name);
 	}
 
 	public void restoreActionBar() {
