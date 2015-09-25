@@ -7,7 +7,8 @@ x Load the information from the restaurant into a fragment, AND, put there a but
 x Add functionality to that button.
 x Add the open in google maps function to the address section
 x Fix the fragment stack
-- Check that the tittle is properly changed 
+- Check that the tittle is properly changed
+- Fix the stack so it doesnt pulls out when pressing back
 - Update the database to acept dish description, and stuff. Perhaps even add a table for dishes? Update also the database number
 - Cambiar la informacion de las direcciones en la base de datos a Grainger Market en vez de Grainger no se que vergas
 - check the list items and see why there is too much space wasted before and after the image

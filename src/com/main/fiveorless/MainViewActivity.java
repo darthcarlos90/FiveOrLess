@@ -82,10 +82,14 @@ public class MainViewActivity extends Activity implements
 			mTitle = getString(R.string.title_section_feedback);
 			break;
 		}
+		getActionBar().setTitle(mTitle);
+		
 	}
 
 	public void ManualOnSectionAttached(String name) {
 		mTitle = name;
+		getActionBar().setTitle(mTitle);
+		
 	}
 
 	public void restoreActionBar() {
@@ -122,7 +126,7 @@ public class MainViewActivity extends Activity implements
 	}
 
 	private Fragment createFragment(int sectionNumber) {
-		// TODO: Add functionality to thefragment stack
+		// TODO: Add functionality to the fragment stack
 		Fragment fragment = null;
 		Bundle args = new Bundle();
 
