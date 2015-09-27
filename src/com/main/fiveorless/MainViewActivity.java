@@ -28,6 +28,7 @@ public class MainViewActivity extends Activity implements
 	private static final String ARG_SECTION_NUMBER = "section_number";
 	protected GoogleApiClient gac;
 	protected Location mLocation;
+	int counter = 0;
 
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the
@@ -63,7 +64,10 @@ public class MainViewActivity extends Activity implements
 		FragmentManager fragmentManager = getFragmentManager();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		transaction.replace(R.id.container, createFragment(position + 1));
-		transaction.addToBackStack(null);
+		if(counter > 0){
+			transaction.addToBackStack(null);
+		}
+		counter ++;
 		transaction.commit();
 	}
 
