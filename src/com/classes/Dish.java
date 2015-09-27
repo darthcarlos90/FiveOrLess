@@ -1,20 +1,42 @@
 package com.classes;
 
 public class Dish {
-	
+
+	private int id;
 	private String name;
-	private float price;
+	private double price;
 	private String description;
 	private boolean isMain;
-	
-	public Dish(String name, float price, String description, boolean isMain) {
+
+	/**
+	 * Constructor of Dish class.
+	 * 
+	 * @param id
+	 *            The id of the dish.
+	 * @param name
+	 *            The name of the dish.
+	 * @param price
+	 *            The price of the dish.
+	 * @param description
+	 *            The description of the dish.
+	 * @param isMain
+	 *            Is it the main dish?
+	 */
+	public Dish(int id, String name, double price, String description,
+			boolean isMain) {
 		this.name = name;
 		this.price = price;
 		this.description = description;
 		this.isMain = isMain;
 	}
-	
-	public Dish(){}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -24,11 +46,11 @@ public class Dish {
 		this.name = name;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

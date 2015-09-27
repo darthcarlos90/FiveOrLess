@@ -3,20 +3,22 @@ package com.database;
 import android.content.ContentValues;
 import android.content.Context;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+
 
 import com.database.ContractClass;
 import com.database.ContractClass.Advertisers;
+import com.database.ContractClass.Dishes;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	// If anything is changed on the database schema, this number must be
 	// changed
-	public static final int DATABASE_VERSION = 1;
+	public static final int DATABASE_VERSION = 2;
 	public static final String DATABASE_NAME = "FiveOrLessDb.db";
-	private static final String TAG = "FIVEXLESS";
+	//private static final String TAG = "FIVEXLESS";
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -45,9 +47,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	private void RunCreates(SQLiteDatabase db) {
-		Log.d(TAG,ContractClass.SQL_CREATE_ADVERTISERS);
 		db.execSQL(ContractClass.SQL_CREATE_ADVERTISERS);
 		db.execSQL(ContractClass.SQL_CREATE_DISCOUNTS);
+		db.execSQL(ContractClass.SQL_CREATE_DISHES);
 	}
 
 	/**
@@ -76,16 +78,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		// French Oven
 		insertIntoAdvertisersTable(db, "FrenchOven", "fo", "Lunch", 0,
 				"The French Oven Bakery", 54.972886f, -1.6149408f,
-				"Grainger Arcade", "NE1 5QF");
+				"Grainger Market", "NE1 5QF");
 
 		// Fez Food
 		insertIntoAdvertisersTable(db, "FrezFood", "ff", "Lunch", 0,
-				"Fez Food", 54.972886f, -1.6149408f, "Grainger Arcade",
+				"Fez Food", 54.972886f, -1.6149408f, "Grainger Market",
 				"NE1 5QF");
 
 		// Grainger Pizza
 		insertIntoAdvertisersTable(db, "GraingerPizza", "gpizza", "Lunch", 0,
-				"Grainger Pizza", 54.972886f, -1.6149408f, "Grainger Arcade",
+				"Grainger Pizza", 54.972886f, -1.6149408f, "Grainger Market",
 				"NE1 5QF");
 
 		// Great Grub
@@ -96,21 +98,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		// Crepes
 		insertIntoAdvertisersTable(db, "LePetitteCrepe", "lpc", "Snack", 0,
 				"La Petite Creperie", 54.972886f, -1.6149408f,
-				"Grainger Arcade", "NE1 5QF");
+				"Grainger Market", "NE1 5QF");
 
 		// Pumphres
 		insertIntoAdvertisersTable(db, "Pumphres", "pph", "Lunch", 0,
 				"Pumphrey's Coffee Center", 54.972886f, -1.6149408f,
-				"Grainger Arcade", "NE1 5QF");
+				"Grainger Market", "NE1 5QF");
 
 		// QuilliamBrothers
 		insertIntoAdvertisersTable(db, "QuilliamBrothers", "qb", "Tea time", 0,
 				"Quilliam Brothers' Teahouse", 54.9793609f, -1.6130656f,
-				"Claremont Buildings1 Eldon Square", "NE1 7RD");
+				"Claremont Buildings Eldon Square", "NE1 7RD");
 
 		// Red Dumplings
 		insertIntoAdvertisersTable(db, "RedDumpling", "rdumplings", "Lunch", 0,
-				"Red Dumpling", 54.972886f, -1.6149408f, "Grainger Arcade",
+				"Red Dumpling", 54.972886f, -1.6149408f, "Grainger Market",
 				"NE1 5QF");
 
 		// Shijo
@@ -119,21 +121,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		// Simply Seafood
 		insertIntoAdvertisersTable(db, "SimplySeaFood", "ss", "Lunch", 0,
-				"Simply Seafood", 54.972886f, -1.6149408f, "Grainger Arcade",
+				"Simply Seafood", 54.972886f, -1.6149408f, "Grainger Market",
 				"NE1 5QF");
 
 		// SloppyJoes
 		insertIntoAdvertisersTable(db, "SloppyJoes", "sj", "Lunch", 0,
-				"Sloppy Joes", 54.972886f, -1.6149408f, "Grainger Arcade",
+				"Sloppy Joes", 54.972886f, -1.6149408f, "Grainger Market",
 				"NE1 5QF");
 
 		// The best Sandwich
 		insertIntoAdvertisersTable(db, "TheBestSandwich", "tbs", "Lunch", 0,
-				"The Best Sandwich", 0.0f, 0.0f, " pending", "pending");
+				"The Best Sandwich", 54.9783619f, -1.6137698f, "Percy Street",
+				"NE1 7RS");
 
 		// WiFri
 		insertIntoAdvertisersTable(db, "WiFri", "wf", "Lunch", 0, "Wi-Fri",
-				54.972886f, -1.6149408f, "Grainger Arcade", "NE1 5QF");
+				54.972886f, -1.6149408f, "Grainger Market", "NE1 5QF");
+
+		/*
+		 * Now it is time to manually add the dishes ...
+		 */
+		insertIntoDishesTable(
+				db,
+				"Fish noodles",
+				"Fresh food cooked right in front of you by the former personal chef of Portugese footballer Luis Figo.",
+				"SimplySeaFood", 4.5);
+
+		insertIntoDishesTable(
+				db,
+				"Chicken and Chorizo Baguette",
+				"A great selection of freshly made sandiwches and paninis available at Sloppy Joe's in Grainger market",
+				"SloppyJoes", 2.0);
+		insertIntoDishesTable(
+				db,
+				"Meat Feast Sandwich",
+				"An amazing meat feast sandwich, with succelent roast ham, prime beef and juicy chicken, topped with fresh salad",
+				"FrankieAndTonies", 3.0);
 
 	}
 
@@ -170,12 +193,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		values.put(Advertisers.ADVERTISER_ADDRESS, address);
 		values.put(Advertisers.POSTCODE, postcode);
 		db.insert(Advertisers.TABLE_NAME, null, values);
+	}
+
+	/**
+	 * Inserts into the dish table.
+	 * 
+	 * @param db
+	 *            The database to insert into
+	 * @param dish_name
+	 *            The name of the dish.
+	 * @param dish_info
+	 *            The information of the dish.
+	 * @param advertiser_name
+	 *            The name of the advertiser.
+	 * @param dish_price
+	 *            The price of the dish.
+	 */
+	private void insertIntoDishesTable(SQLiteDatabase db, String dish_name,
+			String dish_info, String advertiser_name, double dish_price) {
+		ContentValues values = new ContentValues();
+		values.put(Dishes.DISH_NAME, dish_name);
+		values.put(Dishes.DISH_INFO, dish_info);
+		values.put(Dishes.DISH_PRICE, dish_price);
+		String projection[] = { Advertisers.ADVERTISER_ID };
+		Cursor c = db.query(Advertisers.TABLE_NAME, projection,
+				Advertisers.ADVERTISER_NAME + " = " + advertiser_name, null,
+				null, null, null, null);
+		if (c.moveToFirst()) { // If the advertiser actually exists
+			int id = c.getInt(0);
+			c.close();
+			values.put(Dishes.ADVERTISER_ID, id);
+			db.insert(Dishes.TABLE_NAME, null, values);
+		}
 
 	}
 
 	private void RunDeletes(SQLiteDatabase db) {
 		db.execSQL(ContractClass.SQL_DELETE_ADVERTISERS);
 		db.execSQL(ContractClass.SQL_DELETE_DISCOUNTS);
+		db.execSQL(ContractClass.SQL_DELETE_DISHES);
 	}
 
 }

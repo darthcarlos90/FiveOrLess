@@ -31,7 +31,7 @@ public abstract class ContractClass {
 		public static final String DAY_TIME = "DayTime";
 		public static final String DISPLAY_NAME = "DisplayName";
 		public static final String POSTCODE = "AdvertiserPostcode";
-		
+
 	}
 
 	public static abstract class Discounts implements BaseColumns {
@@ -42,6 +42,14 @@ public abstract class ContractClass {
 		public static final String DISCOUNT_INFO = "DiscountInfo";
 	}
 
+	public static abstract class Dishes implements BaseColumns {
+		public static final String TABLE_NAME = "Dishes";
+		public static final String DISH_ID = "DishId";
+		public static final String DISH_NAME = "DishName";
+		public static final String ADVERTISER_ID = Advertisers.ADVERTISER_ID;
+		public static final String DISH_INFO = "DishInfo";
+		public static final String DISH_PRICE = "DishPrice";
+	}
 
 	// Now here come some helper constants to create the SQL statements
 	private static final String TEXT_TYPE = " TEXT";
@@ -52,9 +60,9 @@ public abstract class ContractClass {
 	private static final String OPEN_PARENTHESIS = " (";
 	private static final String CLOSE_PARENTHESIS = " )";
 	private static final String PRIMARY_KEY = " PRIMARY KEY";
-	private static final String DROP_STATEMENT = "DROP TABLE IF EXISTS";
+	private static final String DROP_STATEMENT = "DROP TABLE IF EXISTS ";
 	private static final String FOREIGN_KEY_1 = "FOREIGN KEY (";
-	private static final String FOREIGN_HEY_2 = ") REFERENCES ";
+	private static final String FOREIGN_KEY_2 = ") REFERENCES ";
 	private static final String AUTO_INCREMENT = " AUTOINCREMENT";
 
 	// Now the actual SQL statements
@@ -80,10 +88,23 @@ public abstract class ContractClass {
 			+ INTEGER_TYPE + PRIMARY_KEY + AUTO_INCREMENT + COMMA_SEP
 			+ Discounts.DISCOUNT_INFO + TEXT_TYPE + COMMA_SEP
 			+ Discounts.ADVERTISER_ID + INTEGER_TYPE + COMMA_SEP
-			+ FOREIGN_KEY_1 + Discounts.ADVERTISER_ID + FOREIGN_HEY_2
+			+ FOREIGN_KEY_1 + Discounts.ADVERTISER_ID + FOREIGN_KEY_2
 			+ Advertisers.TABLE_NAME + OPEN_PARENTHESIS
 			+ Advertisers.ADVERTISER_ID + CLOSE_PARENTHESIS + CLOSE_PARENTHESIS;
 
 	public static final String SQL_DELETE_DISCOUNTS = DROP_STATEMENT
 			+ Discounts.TABLE_NAME;
+
+	public static final String SQL_CREATE_DISHES = CREATE_TABLE
+			+ Dishes.TABLE_NAME + OPEN_PARENTHESIS + Dishes.DISH_ID
+			+ INTEGER_TYPE + PRIMARY_KEY + AUTO_INCREMENT + COMMA_SEP
+			+ Dishes.DISH_NAME + TEXT_TYPE + COMMA_SEP + Dishes.DISH_INFO
+			+ TEXT_TYPE + COMMA_SEP + Dishes.DISH_PRICE + REAL_TYPE + COMMA_SEP
+			+ Dishes.ADVERTISER_ID + INTEGER_TYPE + COMMA_SEP + FOREIGN_KEY_1
+			+ Dishes.ADVERTISER_ID + FOREIGN_KEY_2 + Advertisers.TABLE_NAME
+			+ OPEN_PARENTHESIS + Advertisers.ADVERTISER_ID + CLOSE_PARENTHESIS
+			+ CLOSE_PARENTHESIS;
+
+	public static final String SQL_DELETE_DISHES = DROP_STATEMENT
+			+ Dishes.TABLE_NAME;
 }

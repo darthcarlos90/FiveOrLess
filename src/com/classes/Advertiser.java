@@ -224,6 +224,10 @@ public class Advertiser {
 		dishes.add(dish);
 	}
 
+	public void setDishes(ArrayList<Dish> dishes) {
+		this.dishes = dishes;
+	}
+
 	public Dish getDishAt(int index) {
 		return dishes.get(index);
 	}
@@ -231,8 +235,7 @@ public class Advertiser {
 	public Dish getMainDish() {
 		// TODO: For now
 		if (dishes.isEmpty()) {
-			return new Dish("Dummy Dish for testing", 5.0f,
-					"Some delicious dish", true);
+			return new Dish(0, "no info :(", 5.0, "Some delicious dish", true);
 
 		} else {
 			int main_index = 0;
