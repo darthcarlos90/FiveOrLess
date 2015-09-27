@@ -72,7 +72,7 @@ public class MyArrayAdapter extends ArrayAdapter<Advertiser> {
 			holder.address.setText(adv.getAddress());
 			holder.dishDescription.setText(adv.getMainDish().getDescription());
 			holder.dishName.setText(adv.getMainDish().getName());
-			holder.dishPrice.setText("" + adv.getMainDish().getPrice());
+			holder.dishPrice.setText("" + adv.getMainDish().getPrice() + "\u00a3");
 
 		}
 

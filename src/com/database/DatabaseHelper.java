@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-
 import com.database.ContractClass;
 import com.database.ContractClass.Advertisers;
 import com.database.ContractClass.Dishes;
@@ -18,7 +17,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	// changed
 	public static final int DATABASE_VERSION = 2;
 	public static final String DATABASE_NAME = "FiveOrLessDb.db";
-	//private static final String TAG = "FIVEXLESS";
+
+	// private static final String TAG = "FIVEXLESS";
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -217,8 +217,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		values.put(Dishes.DISH_PRICE, dish_price);
 		String projection[] = { Advertisers.ADVERTISER_ID };
 		Cursor c = db.query(Advertisers.TABLE_NAME, projection,
-				Advertisers.ADVERTISER_NAME + " = " + advertiser_name, null,
-				null, null, null, null);
+				Advertisers.ADVERTISER_NAME + " = '" + advertiser_name + "'",
+				null, null, null, null, null);
 		if (c.moveToFirst()) { // If the advertiser actually exists
 			int id = c.getInt(0);
 			c.close();
