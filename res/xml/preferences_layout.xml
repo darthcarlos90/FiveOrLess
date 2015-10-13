@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="pref_key_location_settings"
+        android:title="@string/location_distance" >
+        <EditTextPreference
+            android:defaultValue="1"
+            android:key="distance_settings"
+            android:summary="@string/descriptio_distance_option"
+            android:title="@string/distance_search" />
+
+        <ListPreference
+            android:entries="@array/Units"
+            android:entryValues="@array/Units"
+            android:key="unit_settings"
+            android:title="@string/units"
+            android:defaultValue="km"
+             />
+    </PreferenceCategory>
+
+</PreferenceScreen>

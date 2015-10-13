@@ -15,5 +15,9 @@
     <string name="temp_string">Temp String</string>
     <string name="on_favs">Favorite</string>
     <string name="no_favs">Add to Favorites</string>
+    <string name="location_distance">Location Distance</string>
+    <string name="distance_search">Distance Search</string>
+    <string name="descriptio_distance_option">How far do you want the show me option to look for restaurants</string>
+    <string name="units">Units</string>
 
 </resources>

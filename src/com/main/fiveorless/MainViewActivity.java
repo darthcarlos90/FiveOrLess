@@ -1,6 +1,7 @@
 package com.main.fiveorless;
 
 import com.fragments.BusinessListFragment;
+import com.fragments.PreferencesFragment;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -113,7 +114,7 @@ public class MainViewActivity extends Activity implements
 			// decide what to show in the action bar.
 			getMenuInflater().inflate(R.menu.main_view, menu);
 			restoreActionBar();
-			Log.d(TAG, "onCreateOptionsMenu");
+			//Log.d(TAG, "onCreateOptionsMenu");
 			return true;
 		}
 		return super.onCreateOptionsMenu(menu);
@@ -149,6 +150,9 @@ public class MainViewActivity extends Activity implements
 			break;
 		case 3:
 			fragment = new BusinessListFragment();
+			break;
+		case 4:
+			fragment = new PreferencesFragment();
 			break;
 
 		}

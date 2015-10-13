@@ -13,9 +13,12 @@ import com.database.ContractClass.Dishes;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +31,7 @@ public class BusinessListFragment extends ParentFragmentClass {
 	private final String ARG_EVERYTHING = "section_number";
 	private ArrayList<Advertiser> advertisers;
 	private DatabaseHelper myDatabase;
+	private static final String TAG = "FIVEXLESS";
 
 	public BusinessListFragment() {
 		// Empty constructor needed!
@@ -55,9 +59,18 @@ public class BusinessListFragment extends ParentFragmentClass {
 			double longitude = getArguments().getDouble("Longitude");
 			ArrayList<Advertiser> temp = getAll(db); // get all the advertisers
 			// calculate which elements are in a distance radius
-			// TODO: Set the distance to be an option of the app
+			SharedPreferences preferences = PreferenceManager
+					.getDefaultSharedPreferences(getActivity());
+			double distance = Double.parseDouble(preferences.getString(
+					"distance_settings", "1.0"));
+			String units = preferences.getString("unit_settings", "km");
+			if(!units.equals("km")){
+				distance = distance / 1000.0;
+			}
+			Log.d(TAG, distance + "");
+			Log.d(TAG, units);
 			advertisers = SearchManager
-					.businesses(temp, latitude, longitude, 1);
+					.businesses(temp, latitude, longitude, distance);
 			break;
 		case 3:
 			// Do a query of all the favorites
