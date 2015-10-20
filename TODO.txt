@@ -15,7 +15,6 @@ x Make the pound element be before, not after, the price
 x The options menu to calculate the distance
 x If there is no location set, then just show every restaurant in the list?
 x If there is a permision for location, but you dont have a previous location, get the location
-- FIx the GODAMN Stack of fragments
 - check the list items and see why there is too much space wasted before and after the image
 - Make favorites be about the dishes, no advertisers
 - Finish the favorites listItem or something
