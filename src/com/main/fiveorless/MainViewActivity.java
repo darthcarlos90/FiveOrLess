@@ -11,11 +11,17 @@ import com.google.android.gms.location.LocationServices;
 import android.app.Activity;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,6 +62,50 @@ public class MainViewActivity extends Activity implements
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
 
+		LocationManager lm = (LocationManager) this
+				.getSystemService(Context.LOCATION_SERVICE);
+
+		/*
+		 * Thanks stack overflow!!!!
+		 * http://stackoverflow.com/questions/10311834/
+		 * how-to-check-if-location-services-are-enabled
+		 */
+		boolean gps_enabled = false;
+		boolean network_enabled = false;
+
+		gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		network_enabled = lm
+				.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+		if (!gps_enabled && !network_enabled) {
+			AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+			dialog.setMessage(this.getResources().getString(
+					R.string.no_gps_message));
+			dialog.setPositiveButton(
+					this.getResources().getString(R.string.go_settings_txt),
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							Intent myIntent = new Intent(
+									Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+							startActivity(myIntent);
+
+						}
+					});
+			dialog.setNegativeButton("Stay like this",
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+
+						}
+					});
+
+			dialog.show();
+		}
+
 		buildGoogleApiClient();
 	}
 
@@ -65,10 +115,10 @@ public class MainViewActivity extends Activity implements
 		FragmentManager fragmentManager = getFragmentManager();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		transaction.replace(R.id.container, createFragment(position + 1));
-		if(counter > 0){
+		if (counter > 0) {
 			transaction.addToBackStack(null);
 		}
-		counter ++;
+		counter++;
 		transaction.commit();
 	}
 
@@ -114,7 +164,7 @@ public class MainViewActivity extends Activity implements
 			// decide what to show in the action bar.
 			getMenuInflater().inflate(R.menu.main_view, menu);
 			restoreActionBar();
-			//Log.d(TAG, "onCreateOptionsMenu");
+			// Log.d(TAG, "onCreateOptionsMenu");
 			return true;
 		}
 		return super.onCreateOptionsMenu(menu);
@@ -145,8 +195,14 @@ public class MainViewActivity extends Activity implements
 			break;
 		case 2:
 			fragment = new BusinessListFragment();
-			args.putDouble("Latitude", mLocation.getLatitude());
-			args.putDouble("Longitude", mLocation.getLongitude());
+			if (mLocation != null) {
+				args.putDouble("Latitude", mLocation.getLatitude());
+				args.putDouble("Longitude", mLocation.getLongitude());
+			} else {
+				args.putDouble("Latitude", 0.0);
+				args.putDouble("Longitude", 0.0);
+			}
+
 			break;
 		case 3:
 			fragment = new BusinessListFragment();
@@ -194,10 +250,13 @@ public class MainViewActivity extends Activity implements
 		 * not a totally accurate location is needed, and when you dont need to
 		 * be getting exact location updates every other time.
 		 */
-
 		mLocation = LocationServices.FusedLocationApi.getLastLocation(gac);
-		Log.d(TAG, "Latitude: " + mLocation.getLatitude());
-		Log.d(TAG, "Longitude: " + mLocation.getLongitude());
+		if (mLocation == null) {
+			Log.d(TAG, "OH NOES");
+		} else {
+			Log.d(TAG, "Latitude: " + mLocation.getLatitude());
+			Log.d(TAG, "Longitude: " + mLocation.getLongitude());
+		}
 
 	}
 

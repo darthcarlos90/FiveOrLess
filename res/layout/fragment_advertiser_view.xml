@@ -13,8 +13,7 @@
             android:id="@+id/advertiser_main_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/main_image_desc"
-            android:src="@drawable/butterfingers1" />
+            android:contentDescription="@string/main_image_desc" />
 
         <TextView
             android:id="@+id/dish_name_tv"

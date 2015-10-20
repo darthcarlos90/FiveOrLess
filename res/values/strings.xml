@@ -19,5 +19,7 @@
     <string name="distance_search">Distance Search</string>
     <string name="descriptio_distance_option">How far do you want the show me option to look for restaurants</string>
     <string name="units">Units</string>
+    <string name="no_gps_message">Unfortunately, your phone has disabled locations.\nPlease enable them in order to fully enjoy the features of the app!</string>
+    <string name="go_settings_txt">Go to Settings</string>
 
 </resources>

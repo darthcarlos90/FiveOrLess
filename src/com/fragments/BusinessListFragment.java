@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class BusinessListFragment extends ParentFragmentClass {
 
@@ -40,6 +41,7 @@ public class BusinessListFragment extends ParentFragmentClass {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		boolean showList = true;
 		myDatabase = new DatabaseHelper(getActivity());
 		advertisers = new ArrayList<Advertiser>();
 		View rootView = inflater.inflate(R.layout.fragment_lists_view,
@@ -57,20 +59,34 @@ public class BusinessListFragment extends ParentFragmentClass {
 			// Show only the elements that are around
 			double latitude = getArguments().getDouble("Latitude");
 			double longitude = getArguments().getDouble("Longitude");
-			ArrayList<Advertiser> temp = getAll(db); // get all the advertisers
-			// calculate which elements are in a distance radius
-			SharedPreferences preferences = PreferenceManager
-					.getDefaultSharedPreferences(getActivity());
-			double distance = Double.parseDouble(preferences.getString(
-					"distance_settings", "1.0"));
-			String units = preferences.getString("unit_settings", "km");
-			if(!units.equals("km")){
-				distance = distance / 1000.0;
+			if (latitude == 0.0 && longitude == 0.0) {
+				// If the latitude and longitude are 0, just show a message
+				showList = false;
+
+			} else {
+				/*
+				 * TODO: This thing of getting all advertisers should change,
+				 * maybe when a proper server is established, send the location
+				 * through the web service, and allow the web service to do the
+				 * calculations, and retrieve only the correct elements.
+				 */
+				ArrayList<Advertiser> temp = getAll(db); // get all the
+															// advertisers
+				// calculate which elements are in a distance radius
+				SharedPreferences preferences = PreferenceManager
+						.getDefaultSharedPreferences(getActivity());
+				double distance = Double.parseDouble(preferences.getString(
+						"distance_settings", "1.0"));
+				String units = preferences.getString("unit_settings", "km");
+				if (!units.equals("km")) {
+					distance = distance / 1000.0;
+				}
+				Log.d(TAG, distance + "");
+				Log.d(TAG, units);
+				advertisers = SearchManager.businesses(temp, latitude,
+						longitude, distance);
 			}
-			Log.d(TAG, distance + "");
-			Log.d(TAG, units);
-			advertisers = SearchManager
-					.businesses(temp, latitude, longitude, distance);
+
 			break;
 		case 3:
 			// Do a query of all the favorites
@@ -78,27 +94,46 @@ public class BusinessListFragment extends ParentFragmentClass {
 			break;
 		}
 
-		// Now that we've got the data, lets put it on the List View
-		MyArrayAdapter adapter = new MyArrayAdapter(getActivity(), advertisers);
+		if (!showList) {
+			TextView tv = (TextView) rootView.findViewById(R.id.section_label);
+			tv.setText("Please enable your location services to enable this feature.");
 
-		ListView listView = (ListView) rootView.findViewById(R.id.main_list);
-		listView.setAdapter(adapter);
-		listView.setOnItemClickListener(new OnItemClickListener() {
+		} else {
+			// Let's see how many elements are around the location
+			if (advertisers.size() > 0) {
+				// Now that we've got the data, lets put it on the List View
+				MyArrayAdapter adapter = new MyArrayAdapter(getActivity(),
+						advertisers);
 
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				FragmentManager fragmentManager = getFragmentManager();
-				Fragment fragment = new ShowAdvertiserFragment();
-				Bundle args = new Bundle();
-				args.putInt("toSearch", advertisers.get(position).getId());
-				args.putString("advName", advertisers.get(position).getName());
-				fragment.setArguments(args);
-				fragmentManager.beginTransaction()
-						.replace(R.id.container, fragment).addToBackStack(null)
-						.commit();
+				ListView listView = (ListView) rootView
+						.findViewById(R.id.main_list);
+				listView.setAdapter(adapter);
+				listView.setOnItemClickListener(new OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view,
+							int position, long id) {
+						FragmentManager fragmentManager = getFragmentManager();
+						Fragment fragment = new ShowAdvertiserFragment();
+						Bundle args = new Bundle();
+						args.putInt("toSearch", advertisers.get(position)
+								.getId());
+						args.putString("advName", advertisers.get(position)
+								.getName());
+						fragment.setArguments(args);
+						fragmentManager.beginTransaction()
+								.replace(R.id.container, fragment)
+								.addToBackStack(null).commit();
+					}
+				});
+
+			} else {
+				TextView tv = (TextView) rootView
+						.findViewById(R.id.section_label);
+				tv.setText("No restaurants arround :(");
 			}
-		});
+
+		}
 
 		return rootView;
 	}
