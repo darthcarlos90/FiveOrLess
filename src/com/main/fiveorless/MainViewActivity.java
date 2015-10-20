@@ -18,7 +18,9 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -29,13 +31,16 @@ import android.support.v4.widget.DrawerLayout;
 
 public class MainViewActivity extends Activity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks,
-		ConnectionCallbacks, OnConnectionFailedListener {
+		ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
 
 	private static final String TAG = "FIVEXLESS";
 	private static final String ARG_SECTION_NUMBER = "section_number";
 	protected GoogleApiClient gac;
 	protected Location mLocation;
 	int counter = 0;
+	private LocationManager lm;
+	private double longitude;
+	private double latitude;
 
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the
@@ -62,8 +67,10 @@ public class MainViewActivity extends Activity implements
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
 
-		LocationManager lm = (LocationManager) this
-				.getSystemService(Context.LOCATION_SERVICE);
+		lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+		latitude = 0.0;
+		longitude = 0.0;
 
 		/*
 		 * Thanks stack overflow!!!!
@@ -195,13 +202,18 @@ public class MainViewActivity extends Activity implements
 			break;
 		case 2:
 			fragment = new BusinessListFragment();
+
+			/*
+			 * If at this point the locations are null, then this means that the
+			 * location services have been deactivated.
+			 */
 			if (mLocation != null) {
-				args.putDouble("Latitude", mLocation.getLatitude());
-				args.putDouble("Longitude", mLocation.getLongitude());
-			} else {
-				args.putDouble("Latitude", 0.0);
-				args.putDouble("Longitude", 0.0);
+				latitude = mLocation.getLatitude();
+				longitude = mLocation.getLongitude();
 			}
+
+			args.putDouble("Latitude", latitude);
+			args.putDouble("Longitude", longitude);
 
 			break;
 		case 3:
@@ -240,19 +252,33 @@ public class MainViewActivity extends Activity implements
 		}
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		lm.removeUpdates(this);
+	}
+
 	/**
 	 * When a google api client is succesfully connected.
 	 */
 	@Override
 	public void onConnected(Bundle connectionHint) {
 		/*
-		 * Apparently, the best practice is to get the location this way when
-		 * not a totally accurate location is needed, and when you dont need to
-		 * be getting exact location updates every other time.
+		 * This gets the last location get maybe by us, maybe by some other app.
+		 * This will return null if this is the first app trying to get the
+		 * location.
 		 */
 		mLocation = LocationServices.FusedLocationApi.getLastLocation(gac);
 		if (mLocation == null) {
-			Log.d(TAG, "OH NOES");
+			/*
+			 * If no one else got the location, then is time to get it by
+			 * ourselves. Damn you other apps!!!
+			 */
+			Criteria criteria = new Criteria();
+			String bestProvider = String.valueOf(
+					lm.getBestProvider(criteria, true)).toString();
+
+			lm.requestLocationUpdates(bestProvider, 1000, 0, this);
 		} else {
 			Log.d(TAG, "Latitude: " + mLocation.getLatitude());
 			Log.d(TAG, "Longitude: " + mLocation.getLongitude());
@@ -270,6 +296,35 @@ public class MainViewActivity extends Activity implements
 	public void onConnectionFailed(ConnectionResult result) {
 		Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = "
 				+ result.getErrorCode());
+
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		// We got a not null location
+		lm.removeUpdates(this); // remove updates so we dont drain battery
+
+		// now update values
+		latitude = location.getLatitude();
+		longitude = location.getLongitude();
+
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
 
 	}
 
