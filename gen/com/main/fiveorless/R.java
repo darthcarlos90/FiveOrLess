@@ -600,8 +600,8 @@ containing a value of this type.
     }
     public static final class string {
         public static final int accept=0x7f070002;
-        public static final int action_example=0x7f070034;
-        public static final int action_settings=0x7f070035;
+        public static final int action_example=0x7f070033;
+        public static final int action_settings=0x7f070034;
         public static final int app_name=0x7f07002c;
         /**  Brand name for Facebook [DO NOT TRANSLATE] 
          */
@@ -733,25 +733,24 @@ containing a value of this type.
         public static final int create_calendar_message=0x7f070005;
         public static final int create_calendar_title=0x7f070004;
         public static final int decline=0x7f070003;
-        public static final int descriptio_distance_option=0x7f07003c;
-        public static final int distance_search=0x7f07003b;
-        public static final int go_settings_txt=0x7f07003f;
-        public static final int location_distance=0x7f07003a;
-        public static final int main_image_desc=0x7f070036;
-        public static final int navigation_drawer_close=0x7f070033;
-        public static final int navigation_drawer_open=0x7f070032;
-        public static final int no_favs=0x7f070039;
-        public static final int no_gps_message=0x7f07003e;
-        public static final int on_favs=0x7f070038;
+        public static final int descriptio_distance_option=0x7f07003b;
+        public static final int distance_search=0x7f07003a;
+        public static final int go_settings_txt=0x7f07003e;
+        public static final int location_distance=0x7f070039;
+        public static final int main_image_desc=0x7f070035;
+        public static final int navigation_drawer_close=0x7f070032;
+        public static final int navigation_drawer_open=0x7f070031;
+        public static final int no_favs=0x7f070038;
+        public static final int no_gps_message=0x7f07003d;
+        public static final int on_favs=0x7f070037;
         public static final int store_picture_message=0x7f070001;
         public static final int store_picture_title=0x7f070000;
-        public static final int temp_string=0x7f070037;
+        public static final int temp_string=0x7f070036;
         public static final int title_section_favorites=0x7f07002e;
-        public static final int title_section_feedback=0x7f070031;
         public static final int title_section_main=0x7f07002d;
         public static final int title_section_options=0x7f07002f;
         public static final int title_section_show=0x7f070030;
-        public static final int units=0x7f07003d;
+        public static final int units=0x7f07003c;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
  Text on a button that allows a user to make a payment with Google Wallet

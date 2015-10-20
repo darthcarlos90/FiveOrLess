@@ -143,9 +143,6 @@ public class MainViewActivity extends Activity implements
 		case 4:
 			mTitle = getString(R.string.title_section_options);
 			break;
-		case 5:
-			mTitle = getString(R.string.title_section_feedback);
-			break;
 		}
 		getActionBar().setTitle(mTitle);
 

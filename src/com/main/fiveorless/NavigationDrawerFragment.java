@@ -110,8 +110,7 @@ public class NavigationDrawerFragment extends Fragment {
 						getString(R.string.title_section_main),
 						getString(R.string.title_section_show),
 						getString(R.string.title_section_favorites),
-						getString(R.string.title_section_options),
-						getString(R.string.title_section_feedback),}));
+						getString(R.string.title_section_options), }));
 		mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 		return mDrawerListView;
 	}
@@ -272,11 +271,11 @@ public class NavigationDrawerFragment extends Fragment {
 			return true;
 		}
 
-//		if (item.getItemId() == R.id.action_example) {
-//			Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT)
-//					.show();
-//			return true;
-//		}
+		// if (item.getItemId() == R.id.action_example) {
+		// Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT)
+		// .show();
+		// return true;
+		// }
 
 		return super.onOptionsItemSelected(item);
 	}
