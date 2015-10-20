@@ -17,5 +17,5 @@ X The options menu to calculate the distance
 - Make favorites be about the dishes, no advertisers
 - Finish the favorites listItem or something
 - Lower the resolution of the images, to be in exactly the middle, not on the border sizes.
-- Implement a gallery view for avery advertiser
+- Move the unused images to another folder.
 
