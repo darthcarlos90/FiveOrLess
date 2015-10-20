@@ -78,11 +78,15 @@ public class BusinessListFragment extends ParentFragmentClass {
 				double distance = Double.parseDouble(preferences.getString(
 						"distance_settings", "1.0"));
 				String units = preferences.getString("unit_settings", "km");
-				if (!units.equals("km")) {
-					distance = distance / 1000.0;
-				}
 				Log.d(TAG, distance + "");
 				Log.d(TAG, units);
+				// convert to km if the units are not kilometers
+				if (units.equals("m")) {
+					distance = distance / 1000.0;
+				} else if (units.equals("mi")) {
+					distance *= 1.609;
+				}
+
 				advertisers = SearchManager.businesses(temp, latitude,
 						longitude, distance);
 			}

@@ -4,6 +4,7 @@
     <string-array name="Units">
         <item>km</item>
         <item>m</item>
+        <item>mi</item>
     </string-array>
 
 </resources>

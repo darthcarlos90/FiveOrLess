@@ -6,17 +6,17 @@
         android:title="@string/location_distance" >
         <EditTextPreference
             android:defaultValue="1"
+            android:inputType="number"
             android:key="distance_settings"
             android:summary="@string/descriptio_distance_option"
             android:title="@string/distance_search" />
 
         <ListPreference
+            android:defaultValue="km"
             android:entries="@array/Units"
             android:entryValues="@array/Units"
             android:key="unit_settings"
-            android:title="@string/units"
-            android:defaultValue="km"
-             />
+            android:title="@string/units" />
     </PreferenceCategory>
 
 </PreferenceScreen>
